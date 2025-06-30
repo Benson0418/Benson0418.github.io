@@ -306,7 +306,7 @@ hexo server
 ```
 hexo clean
 hexo generate
-hexo deploy
+hexo deployr
 ```
 - _config.yml に deploy の設定が必要です。
 
