@@ -72,6 +72,10 @@
 
   
   
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU&#x2F;voDBY5XE2lVh" crossorigin="anonymous">
+
+  
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
@@ -267,11 +271,13 @@
   </div>
 </header>
 
-        <div id="content"  class="sidebar-right" >
+        <div id="content" class="sidebar-left"  >
           <aside id="sidebar">
   
   <div class="sidebar-wrapper-container sticky">
   
+    
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
     
     
   
@@ -813,6 +819,40 @@
 
 
 
+
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous"></script>
+
+  
+    <script>
+      var isMobile = window.matchMedia('(max-width: 959px)').matches;
+      if (isMobile) {
+      const aplayer = _$('#aplayer');
+        if (aplayer) {
+          const aside = aplayer.parentNode;
+          if (aside?.tagName === 'ASIDE') {
+            aplayer.removeAttribute('data-aos');
+            aside.removeChild(aplayer);
+            document.body.appendChild(aplayer);
+          }
+        }
+      }
+      const ap = new APlayer({
+        theme: "var(--color-link)",
+        container: document.getElementById('aplayer'),
+        audio: [{"name":"神々が恋した幻想郷　東方風神録 3面テーマ","artist":"アルペッジョが紡ぐ幻想の調べ","url":"/music/【アルペッジョが紡ぐ幻想の調べ】神々が恋した幻想郷　東方風神録 3面テーマ　【東方中級ピアノアレンジ】.mp3","cover":"/images/cover.jpg"}] || [],
+        fixed: isMobile ? true : (false || false),
+        autoplay: false || false,
+        loop: 'all' || 'all',
+        order: 'random' || 'list',
+        preload: 'auto' || 'auto',
+        volume: 0.7 || 0.7,
+        mutex: true || true,
+        listFolded: false || false,
+        lrcType: 0 || 0,
+      });
+    </script>
+  
 
 
 
