@@ -1,0 +1,848 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://benson0418.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    Vim 文字物件操作 |
+    
+    N95&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Vim基礎教學講義 第三部分：文字物件操作13 回顧上節介紹了操作符+移動的操作邏輯：[次數]&#123;操作符&#125;&#123;移動&#125; 用目前游標與 移動 之間的區域作為 操作符 操作的物件 本節介紹 &#123;操作符&#125;&#123;文字物件&#125; 這一操作邏輯 14 文字物件操作14.1 文字物件概念**文字物件：**語義化的文字片段 格式：i&#x2F;a +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim 文字物件操作">
+<meta property="og:url" content="https://benson0418.github.io/en/2025/08/30/vim_tutorial_part3/index.html">
+<meta property="og:site_name" content="N95&#39;s Blog">
+<meta property="og:description" content="Vim基礎教學講義 第三部分：文字物件操作13 回顧上節介紹了操作符+移動的操作邏輯：[次數]&#123;操作符&#125;&#123;移動&#125; 用目前游標與 移動 之間的區域作為 操作符 操作的物件 本節介紹 &#123;操作符&#125;&#123;文字物件&#125; 這一操作邏輯 14 文字物件操作14.1 文字物件概念**文字物件：**語義化的文字片段 格式：i&#x2F;a +">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-30T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-29T18:22:23.325Z">
+<meta property="article:author" content="zennflare0908">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="N95's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-TW" >正體中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-TW'] = '/2025/08/30/vim_tutorial_part3/';
+            
+              langMap['en'] = '/en/2025/08/30/vim_tutorial_part3/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" alt="Vim 文字物件操作">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <span id="logo">
+            <h1 data-aos="slide-up">Vim 文字物件操作</h1>
+          </span>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vim%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8%E8%AC%9B%E7%BE%A9-%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">Vim基礎教學講義 第三部分：文字物件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%9B%9E%E9%A1%A7"><span class="toc-number">1.1.</span> <span class="toc-text">13 回顧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">14 文字物件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">14.1 文字物件概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">14.2 常見的文字物件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-2-1-%E5%9F%BA%E6%9C%AC%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">14.2.1 基本文字物件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-2-2-%E9%85%8D%E5%B0%8D%E7%AC%A6%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">14.2.2 配對符文字物件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-i-%E8%88%87-a-%E7%9A%84%E5%B7%AE%E7%95%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">14.3 i 與 a 的差異</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AF%84%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">15 文字物件操作範例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#15-1-%E5%9F%BA%E6%9C%AC%E7%AF%84%E4%BE%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">15.1 基本範例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6-vs-%E7%A7%BB%E5%8B%95"><span class="toc-number">1.4.</span> <span class="toc-text">16 文字物件 vs 移動</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-%E6%A6%82%E5%BF%B5%E6%AF%94%E8%BC%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">16.1 概念比較</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-2-%E5%8A%9F%E8%83%BD%E5%B7%AE%E7%95%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">16.2 功能差異</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">17 擴充套件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-%E5%8F%AF%E6%93%B4%E5%85%85%E6%80%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text">17.1 可擴充性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-2-%E5%B8%B8%E7%94%A8%E5%A4%96%E6%8E%9B"><span class="toc-number">1.5.2.</span> <span class="toc-text">17.2 常用外掛</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%88%87%E6%8C%87%E4%BB%A4%E8%A3%9C%E5%85%85"><span class="toc-number">1.6.</span> <span class="toc-text">18 操作符與指令補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#18-1-%E5%A4%A7%E5%B0%8F%E5%AF%AB%E8%BD%89%E6%8F%9B%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.6.1.</span> <span class="toc-text">18.1 大小寫轉換操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-%E5%85%B6%E4%BB%96%E5%AF%A6%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.2.</span> <span class="toc-text">18.2 其他實用指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99%E5%BB%BA%E8%AD%B0"><span class="toc-number">1.7.</span> <span class="toc-text">19 最佳實務建議</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#19-1-%E8%AE%93%E4%BD%A0%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9B%B4%E6%A8%A1%E7%B5%84%E5%8C%96"><span class="toc-number">1.7.1.</span> <span class="toc-text">19.1 讓你的指令更模組化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-2-%E7%B7%B4%E7%BF%92%E6%8A%80%E5%B7%A7%EF%BC%9A%E7%94%A8-v-%E5%85%88%E8%A6%96%E8%A6%BA%E5%8C%96%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AF%84%E5%9C%8D"><span class="toc-number">1.7.2.</span> <span class="toc-text">19.2 練習技巧：用 v 先視覺化修改的範圍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%B5%90"><span class="toc-number">1.8.</span> <span class="toc-text">小結</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-vim_tutorial_part3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-08-30T13:00:00.000Z" itemprop="datePublished">2025-08-30</time>
+    <time style="display: none;" id="post-update-time">2025-08-30</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/vim/" data-aos="zoom-in">vim</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Vim基礎教學講義-第三部分：文字物件操作"><a href="#Vim基礎教學講義-第三部分：文字物件操作" class="headerlink" title="Vim基礎教學講義 第三部分：文字物件操作"></a>Vim基礎教學講義 第三部分：文字物件操作</h1><h2 id="13-回顧"><a href="#13-回顧" class="headerlink" title="13 回顧"></a>13 回顧</h2><p>上節介紹了操作符+移動的操作邏輯：<code>[次數]&#123;操作符&#125;&#123;移動&#125;</code></p>
+<p>用目前游標與 <code>移動</code> 之間的區域作為 <code>操作符</code> 操作的物件</p>
+<p>本節介紹 <code>&#123;操作符&#125;&#123;文字物件&#125;</code> 這一操作邏輯</p>
+<h2 id="14-文字物件操作"><a href="#14-文字物件操作" class="headerlink" title="14 文字物件操作"></a>14 文字物件操作</h2><h3 id="14-1-文字物件概念"><a href="#14-1-文字物件概念" class="headerlink" title="14.1 文字物件概念"></a>14.1 文字物件概念</h3><p>**<code>文字物件</code>：**語義化的文字片段</p>
+<p><strong>格式：</strong><code>i</code>&#x2F;<code>a</code> + 物件</p>
+<h3 id="14-2-常見的文字物件"><a href="#14-2-常見的文字物件" class="headerlink" title="14.2 常見的文字物件"></a>14.2 常見的文字物件</h3><h4 id="14-2-1-基本文字物件"><a href="#14-2-1-基本文字物件" class="headerlink" title="14.2.1 基本文字物件"></a>14.2.1 基本文字物件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w/W         單字</span><br><span class="line">s           句子</span><br><span class="line">p           段落</span><br></pre></td></tr></table></figure>
+
+<h4 id="14-2-2-配對符文字物件"><a href="#14-2-2-配對符文字物件" class="headerlink" title="14.2.2 配對符文字物件"></a>14.2.2 配對符文字物件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(/)         小括號定義的物件</span><br><span class="line">[/]         方括號定義的物件</span><br><span class="line">&#123;/&#125;         大括號定義的物件</span><br><span class="line">&lt;/&gt;         角括號定義的物件</span><br><span class="line">&#x27;/&quot;         引號定義的物件</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-3-i-與-a-的差異"><a href="#14-3-i-與-a-的差異" class="headerlink" title="14.3 i 與 a 的差異"></a>14.3 <code>i</code> 與 <code>a</code> 的差異</h3><ul>
+<li><strong><code>i</code></strong> 代表「inner」，內部：只選取內容</li>
+<li><strong><code>a</code></strong> 代表「a」，額外包括周圍的空格或配對符</li>
+</ul>
+<p><strong>範例說明：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">文字：Hello (world) test</span><br><span class="line"></span><br><span class="line">ci(     修改小括號內部 → 結果：Hello () test</span><br><span class="line">ca(     修改整個小括號 → 結果：Hello  test</span><br></pre></td></tr></table></figure>
+
+<h2 id="15-文字物件操作範例"><a href="#15-文字物件操作範例" class="headerlink" title="15 文字物件操作範例"></a>15 文字物件操作範例</h2><h3 id="15-1-基本範例"><a href="#15-1-基本範例" class="headerlink" title="15.1 基本範例"></a>15.1 基本範例</h3><p>文字物件提供了為文字賦予結構化的含義，允許我們以一個語義物件作為操作單元</p>
+<p><strong><code>[次數]&#123;操作符&#125;&#123;文字物件&#125;</code></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">diw         刪除一個單字</span><br><span class="line">ci(         修改小括號內部</span><br><span class="line">yi&#123;         複製大括號內部</span><br><span class="line">da<span class="string">&quot;         刪除整個雙引號內容（包含引號）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>優勢：</strong></p>
+<ul>
+<li>透過組合 <code>操作符</code> 與 <code>文字物件</code>，可以對不同的語義物件實施不同的操作</li>
+<li>不僅十分靈活，而且語義明確，容易記憶</li>
+<li>配合 <code>.</code> 指令或 <code>[次數]</code> 可以簡單地完成多次對特定語義物件的操作</li>
+</ul>
+<h2 id="16-文字物件-vs-移動"><a href="#16-文字物件-vs-移動" class="headerlink" title="16 文字物件 vs 移動"></a>16 文字物件 vs 移動</h2><h3 id="16-1-概念比較"><a href="#16-1-概念比較" class="headerlink" title="16.1 概念比較"></a>16.1 概念比較</h3><p><strong><code>(操作符)(移動)</code> 與 <code>(操作符)(文字物件)</code></strong></p>
+<p>解耦了操作與操作的物件，大大提升了操作效率</p>
+<h3 id="16-2-功能差異"><a href="#16-2-功能差異" class="headerlink" title="16.2 功能差異"></a>16.2 功能差異</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Motion（移動）</th>
+<th>Text Objects（文字物件）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>獨立使用</td>
+<td>可以獨立使用（如 <code>w</code>、<code>b</code>、<code>e</code>）</td>
+<td>不能獨立使用（如 <code>iw</code>）</td>
+</tr>
+<tr>
+<td>作用範圍</td>
+<td>透過游標的移動確定操作符的作用範圍</td>
+<td>顯式地指定操作的物件</td>
+</tr>
+<tr>
+<td>範圍特性</td>
+<td>範圍更加靈活但不夠明確</td>
+<td>範圍明確且語義清楚</td>
+</tr>
+</tbody></table>
+<h2 id="17-擴充套件"><a href="#17-擴充套件" class="headerlink" title="17 擴充套件"></a>17 擴充套件</h2><h3 id="17-1-可擴充性"><a href="#17-1-可擴充性" class="headerlink" title="17.1 可擴充性"></a>17.1 可擴充性</h3><p><code>&#123;操作符&#125;&#123;移動&#125;</code> 與 <code>&#123;操作符&#125;&#123;文字物件&#125;</code> </p>
+<p>可以透過自訂 操作符、移動、文字物件 進行擴充，實現更強大的操作</p>
+<h3 id="17-2-常用外掛"><a href="#17-2-常用外掛" class="headerlink" title="17.2 常用外掛"></a>17.2 常用外掛</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim-easymotion    擴充移動，更強大的跳轉功能</span><br><span class="line">vim-surround      定義了新增配對符（括號、引號等）的操作符</span><br><span class="line">vim-commentary    定義了新增註解的操作符</span><br><span class="line">targets.vim       擴充文字物件，定義了新的文字物件（如函數參數等）</span><br></pre></td></tr></table></figure>
+
+<h2 id="18-操作符與指令補充"><a href="#18-操作符與指令補充" class="headerlink" title="18 操作符與指令補充"></a>18 操作符與指令補充</h2><h3 id="18-1-大小寫轉換操作符"><a href="#18-1-大小寫轉換操作符" class="headerlink" title="18.1 大小寫轉換操作符"></a>18.1 大小寫轉換操作符</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gu          轉小寫</span><br><span class="line">gU          轉大寫</span><br><span class="line">g~          翻轉大小寫</span><br><span class="line">guw         將下一個單字轉為小寫</span><br><span class="line">gUiw        將目前單字轉為大寫</span><br><span class="line">g~ap        翻轉整個段落的大小寫</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-2-其他實用指令"><a href="#18-2-其他實用指令" class="headerlink" title="18.2 其他實用指令"></a>18.2 其他實用指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">J           連接兩行</span><br><span class="line">&lt;Ctrl-a&gt;    增加數字</span><br><span class="line">&lt;Ctrl-x&gt;    減少數字</span><br><span class="line">g&lt;Ctrl-a&gt;   建立遞增序列</span><br><span class="line">&lt;           左縮排</span><br><span class="line">&gt;           右縮排</span><br></pre></td></tr></table></figure>
+
+<h2 id="19-最佳實務建議"><a href="#19-最佳實務建議" class="headerlink" title="19 最佳實務建議"></a>19 最佳實務建議</h2><h3 id="19-1-讓你的指令更模組化"><a href="#19-1-讓你的指令更模組化" class="headerlink" title="19.1 讓你的指令更模組化"></a>19.1 讓你的指令更模組化</h3><p>盡量使你的指令更模組化，具有清晰的含義與作用範圍，以便於與 <code>.</code> 等指令協同</p>
+<p><strong>範例：</strong><code>daw</code> 比 <code>dw</code> 具有更清晰的語義，也更模組化</p>
+<h3 id="19-2-練習技巧：用-v-先視覺化修改的範圍"><a href="#19-2-練習技巧：用-v-先視覺化修改的範圍" class="headerlink" title="19.2 練習技巧：用 v 先視覺化修改的範圍"></a>19.2 練習技巧：用 <code>v</code> 先視覺化修改的範圍</h3><p>一開始不熟練時，可能不確定 移動 或 文字物件 具體覆蓋了哪部分文字</p>
+<p><strong>練習方法：</strong></p>
+<ul>
+<li>可以先用 <code>v&#123;移動&#125;</code> &#x2F; <code>v&#123;文字物件&#125;</code> 將範圍選中</li>
+<li>再執行 <code>c</code>&#x2F;<code>d</code>&#x2F;<code>y</code> 等操作</li>
+</ul>
+<p>**注意：**當熟練掌握後，盡可能直接使用完整的指令進行操作，因為相比於 <code>viw</code> + <code>d</code>，<code>diw</code> 更加模組化，也更容易進行重複操作</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><ul>
+<li>了解常用的文字物件</li>
+<li>**（重要）**掌握 <code>&#123;操作符&#125;&#123;文字物件&#125;</code> 的操作哲學</li>
+<li>盡量使你的指令模組化，語義清晰，易於重複</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/vim/" rel="tag">vim</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 移動與編輯" class="lazyload">
+      
+      <a href="/en/2025/08/30/vim_tutorial_part2/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Vim 移動與編輯
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      zennflare0908
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        6.4k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:23
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vim%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8%E8%AC%9B%E7%BE%A9-%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">Vim基礎教學講義 第三部分：文字物件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%9B%9E%E9%A1%A7"><span class="toc-number">1.1.</span> <span class="toc-text">13 回顧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">14 文字物件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">14.1 文字物件概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">14.2 常見的文字物件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-2-1-%E5%9F%BA%E6%9C%AC%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">14.2.1 基本文字物件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-2-2-%E9%85%8D%E5%B0%8D%E7%AC%A6%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">14.2.2 配對符文字物件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-i-%E8%88%87-a-%E7%9A%84%E5%B7%AE%E7%95%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">14.3 i 與 a 的差異</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AF%84%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">15 文字物件操作範例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#15-1-%E5%9F%BA%E6%9C%AC%E7%AF%84%E4%BE%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">15.1 基本範例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%96%87%E5%AD%97%E7%89%A9%E4%BB%B6-vs-%E7%A7%BB%E5%8B%95"><span class="toc-number">1.4.</span> <span class="toc-text">16 文字物件 vs 移動</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-%E6%A6%82%E5%BF%B5%E6%AF%94%E8%BC%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">16.1 概念比較</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-2-%E5%8A%9F%E8%83%BD%E5%B7%AE%E7%95%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">16.2 功能差異</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">17 擴充套件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#17-1-%E5%8F%AF%E6%93%B4%E5%85%85%E6%80%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text">17.1 可擴充性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-2-%E5%B8%B8%E7%94%A8%E5%A4%96%E6%8E%9B"><span class="toc-number">1.5.2.</span> <span class="toc-text">17.2 常用外掛</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%88%87%E6%8C%87%E4%BB%A4%E8%A3%9C%E5%85%85"><span class="toc-number">1.6.</span> <span class="toc-text">18 操作符與指令補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#18-1-%E5%A4%A7%E5%B0%8F%E5%AF%AB%E8%BD%89%E6%8F%9B%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.6.1.</span> <span class="toc-text">18.1 大小寫轉換操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-2-%E5%85%B6%E4%BB%96%E5%AF%A6%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.2.</span> <span class="toc-text">18.2 其他實用指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99%E5%BB%BA%E8%AD%B0"><span class="toc-number">1.7.</span> <span class="toc-text">19 最佳實務建議</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#19-1-%E8%AE%93%E4%BD%A0%E7%9A%84%E6%8C%87%E4%BB%A4%E6%9B%B4%E6%A8%A1%E7%B5%84%E5%8C%96"><span class="toc-number">1.7.1.</span> <span class="toc-text">19.1 讓你的指令更模組化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-2-%E7%B7%B4%E7%BF%92%E6%8A%80%E5%B7%A7%EF%BC%9A%E7%94%A8-v-%E5%85%88%E8%A6%96%E8%A6%BA%E5%8C%96%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AF%84%E5%9C%8D"><span class="toc-number">1.7.2.</span> <span class="toc-text">19.2 練習技巧：用 v 先視覺化修改的範圍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%B5%90"><span class="toc-number">1.8.</span> <span class="toc-text">小結</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js" integrity="sha384-vLev0II0HKFaxkcm+&#x2F;7kX5IGwVFBASkGchU311wmU&#x2F;veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "zennflare0908",
+          title: "Vim 文字物件操作",
+          url: "https://benson0418.github.io/2025/08/30/vim_tutorial_part3/",
+          excerpt: "",
+          description: "",
+          stripContent: "Vim基礎教學講義 第三部分：文字物件操作13 回顧上節介紹了操作符+移動的操作邏輯：[次數]&amp;#123;操作符&amp;#125;&amp;#123;移動&amp;#125; 用目前游標與 移動 之間的區域作為 操作符 操作的物件 本節介紹 &amp;#123;操作符&amp;#125;&amp;#123;文字物件&amp;#125; 這一操作邏輯 14 文字物件操作14.1 文字物件概念**文字物件：**語義化的文字片段 格式：i&amp;#x2F;a + 物件 14.2 常見的文字物件14.2.1 基本文字物件123w/W         單字s   ",
+          date: "Sat Aug 30 2025 21:00:00 GMT+0800",
+          updated: "Sat Aug 30 2025 02:22:23 GMT+0800",
+          cover: "https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

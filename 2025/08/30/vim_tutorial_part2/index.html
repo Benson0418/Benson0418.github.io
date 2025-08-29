@@ -1,0 +1,856 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-TW"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本部落格所有文章除特別聲明外，均採用 BY-NC-SA 授權協議。轉載請註明出處！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://benson0418.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    Vim 移動與編輯 |
+    
+    N95&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Vim基礎教學講義 第二部分：移動與編輯8 進階移動指令8.1 基於單字的移動簡單的 hjkl 顯然無法滿足我們的需要 基本單字移動： 1234w     代表「word」，跳轉到下一處單字的開頭b     代表「back」，跳轉到上一處單字的開頭e     代表「end」，跳轉到下一處單字的結尾ge    e的反向版本，跳轉到上一處單字的結尾  **大寫版本 WBE：**對應的單字是連續的非空字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim 移動與編輯">
+<meta property="og:url" content="https://benson0418.github.io/2025/08/30/vim_tutorial_part2/index.html">
+<meta property="og:site_name" content="N95&#39;s Blog">
+<meta property="og:description" content="Vim基礎教學講義 第二部分：移動與編輯8 進階移動指令8.1 基於單字的移動簡單的 hjkl 顯然無法滿足我們的需要 基本單字移動： 1234w     代表「word」，跳轉到下一處單字的開頭b     代表「back」，跳轉到上一處單字的開頭e     代表「end」，跳轉到下一處單字的結尾ge    e的反向版本，跳轉到上一處單字的結尾  **大寫版本 WBE：**對應的單字是連續的非空字">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-08-30T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-29T18:22:28.206Z">
+<meta property="article:author" content="zennflare0908">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="N95's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈禱中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首頁</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">關於</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友鏈</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 訂閱" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">正體中文</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-TW" class="selected">正體中文</li>
+          
+            <li data-value="en" >English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-TW'] = '/2025/08/30/vim_tutorial_part2/';
+            
+              langMap['en'] = '/en/2025/08/30/vim_tutorial_part2/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" alt="Vim 移動與編輯">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <span id="logo">
+            <h1 data-aos="slide-up">Vim 移動與編輯</h1>
+          </span>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vim%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8%E8%AC%9B%E7%BE%A9-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E7%A7%BB%E5%8B%95%E8%88%87%E7%B7%A8%E8%BC%AF"><span class="toc-number">1.</span> <span class="toc-text">Vim基礎教學講義 第二部分：移動與編輯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E9%80%B2%E9%9A%8E%E7%A7%BB%E5%8B%95%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">8 進階移動指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%9F%BA%E6%96%BC%E5%96%AE%E5%AD%97%E7%9A%84%E7%A7%BB%E5%8B%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">8.1 基於單字的移動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E5%9F%BA%E6%96%BC%E6%90%9C%E5%B0%8B%E7%9A%84%E7%A7%BB%E5%8B%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">8.2 基於搜尋的移動</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-1-%E8%A1%8C%E5%85%A7%E6%90%9C%E5%B0%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">8.2.1 行內搜尋</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-2-%E6%AA%94%E6%A1%88%E4%B8%AD%E6%90%9C%E5%B0%8B"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">8.2.2 檔案中搜尋</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%9F%BA%E6%96%BC%E6%A8%99%E8%A8%98%E7%9A%84%E7%A7%BB%E5%8B%95"><span class="toc-number">1.1.3.</span> <span class="toc-text">8.3 基於標記的移動</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-1-%E5%85%A7%E5%BB%BA%E6%A8%99%E8%A8%98"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">8.3.1 內建標記</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E5%85%B6%E4%BB%96%E5%AF%A6%E7%94%A8%E7%9A%84%E8%B7%B3%E8%BD%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">8.4 其他實用的跳轉</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E7%B7%A8%E8%BC%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%B5%B1"><span class="toc-number">1.2.</span> <span class="toc-text">9 編輯操作系統</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-Operator-Motion-Action"><span class="toc-number">1.2.1.</span> <span class="toc-text">9.1 Operator + Motion &#x3D; Action</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-1-%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">9.1.1 常見操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-2-%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%AF%84%E4%BE%8B"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">9.1.2 操作符範例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-3-%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%9B%99%E6%93%8A"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">9.1.3 操作符雙擊</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E9%87%8D%E8%A4%87%E8%88%87%E5%BE%A9%E5%8E%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">10 重複與復原操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E9%87%8D%E8%A4%87%E6%93%8D%E4%BD%9C%EF%BC%9A-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">10.1 重複操作：. 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%89%B9%E6%AC%A1%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">11 批次操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-%E6%95%B8%E5%AD%97-%E5%8B%95%E4%BD%9C"><span class="toc-number">1.4.1.</span> <span class="toc-text">11.1 數字 + 動作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-%E6%89%B9%E6%AC%A1%E6%93%8D%E4%BD%9C%E6%AF%94%E8%BC%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">11.2 批次操作比較</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%AF%A6%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.</span> <span class="toc-text">12 實用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1-%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%B0%8D%E8%A1%8C%E8%99%9F%E7%A2%BA%E5%AE%9A%E7%A7%BB%E5%8B%95%E7%AF%84%E5%9C%8D"><span class="toc-number">1.5.1.</span> <span class="toc-text">12.1 使用相對行號確定移動範圍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%B5%90"><span class="toc-number">1.6.</span> <span class="toc-text">小結</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-vim_tutorial_part2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-08-30T13:00:00.000Z" itemprop="datePublished">2025-08-30</time>
+    <time style="display: none;" id="post-update-time">2025-08-30</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vim/" data-aos="zoom-in">vim</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Vim基礎教學講義-第二部分：移動與編輯"><a href="#Vim基礎教學講義-第二部分：移動與編輯" class="headerlink" title="Vim基礎教學講義 第二部分：移動與編輯"></a>Vim基礎教學講義 第二部分：移動與編輯</h1><h2 id="8-進階移動指令"><a href="#8-進階移動指令" class="headerlink" title="8 進階移動指令"></a>8 進階移動指令</h2><h3 id="8-1-基於單字的移動"><a href="#8-1-基於單字的移動" class="headerlink" title="8.1 基於單字的移動"></a>8.1 基於單字的移動</h3><p>簡單的 <code>hjkl</code> 顯然無法滿足我們的需要</p>
+<p><strong>基本單字移動：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">w     代表「word」，跳轉到下一處單字的開頭</span><br><span class="line">b     代表「back」，跳轉到上一處單字的開頭</span><br><span class="line">e     代表「end」，跳轉到下一處單字的結尾</span><br><span class="line">ge    e的反向版本，跳轉到上一處單字的結尾</span><br></pre></td></tr></table></figure>
+
+<p>**大寫版本 <code>WBE</code>：**對應的單字是連續的非空字元（以空白為分隔）</p>
+<h3 id="8-2-基於搜尋的移動"><a href="#8-2-基於搜尋的移動" class="headerlink" title="8.2 基於搜尋的移動"></a>8.2 基於搜尋的移動</h3><h4 id="8-2-1-行內搜尋"><a href="#8-2-1-行內搜尋" class="headerlink" title="8.2.1 行內搜尋"></a>8.2.1 行內搜尋</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f&#123;char&#125;     跳轉到本行下一個 char 字元出現處</span><br><span class="line">t&#123;char&#125;     跳轉到本行下一個 char 字元出現前</span><br><span class="line">;           快速向後重複 ft 查找</span><br><span class="line">,           快速向前重複 ft 查找</span><br><span class="line">F&#123;char&#125;     往前搜尋而非往後</span><br><span class="line">T&#123;char&#125;     往前搜尋到字元前而非往後</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-2-2-檔案中搜尋"><a href="#8-2-2-檔案中搜尋" class="headerlink" title="8.2.2 檔案中搜尋"></a>8.2.2 檔案中搜尋</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/&#123;pattern&#125;   跳轉到本檔案中下一個 pattern 出現的地方</span><br><span class="line">?&#123;pattern&#125;   跳轉到本檔案中上一個 pattern 出現的地方</span><br><span class="line">*            等價於 /&#123;pattern&#125;，pattern 是目前游標下的單字</span><br><span class="line">n            快速重複向後查找</span><br><span class="line">N            快速重複向前查找</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong><code>pattern</code> 可以是正規表達式</p>
+<h3 id="8-3-基於標記的移動"><a href="#8-3-基於標記的移動" class="headerlink" title="8.3 基於標記的移動"></a>8.3 基於標記的移動</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m&#123;mark&#125;      把目前位置標記為 mark</span><br><span class="line">`&#123;mark&#125;      跳轉到名為 mark 的標記位置（確切位置）</span><br><span class="line">&#x27;&#123;mark&#125;      跳轉到名為 mark 的標記所在行首</span><br></pre></td></tr></table></figure>
+
+<p><strong>標記說明：</strong></p>
+<ul>
+<li><code>mark</code> 是 <code>a-z</code> 的字元</li>
+<li>常用場景：當需要暫時離開目前游標處，做一些事情後再快速地回來</li>
+<li>建議習慣用的標記是 <code>mm</code></li>
+<li><strong>反引號 &#96;</strong> 跳轉到確切位置（行和列）</li>
+<li><strong>單引號 ‘</strong> 跳轉到標記所在行首</li>
+</ul>
+<h4 id="8-3-1-內建標記"><a href="#8-3-1-內建標記" class="headerlink" title="8.3.1 內建標記"></a>8.3.1 內建標記</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">``          上次跳轉前的位置</span><br><span class="line">`.          上次修改的位置</span><br><span class="line">`^          上次插入的位置</span><br><span class="line">&#x27;&#x27;          上次跳轉前的位置（行首）</span><br><span class="line">&#x27;.          上次修改的位置（行首）</span><br><span class="line">&#x27;^          上次插入的位置（行首）</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-4-其他實用的跳轉"><a href="#8-4-其他實用的跳轉" class="headerlink" title="8.4 其他實用的跳轉"></a>8.4 其他實用的跳轉</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^           跳轉到本行的開始（第一個非空白字元）</span><br><span class="line">$           跳轉到本行的結尾</span><br><span class="line">%           跳到匹配的配對符（括號等）處</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-編輯操作系統"><a href="#9-編輯操作系統" class="headerlink" title="9 編輯操作系統"></a>9 編輯操作系統</h2><h3 id="9-1-Operator-Motion-Action"><a href="#9-1-Operator-Motion-Action" class="headerlink" title="9.1 Operator + Motion &#x3D; Action"></a>9.1 Operator + Motion &#x3D; Action</h3><p><strong>(操作符)(移動) &#x3D; 一次編輯動作</strong></p>
+<p>這是Vim最重要的操作邏輯，它允許你組合出各種動作。</p>
+<h4 id="9-1-1-常見操作符"><a href="#9-1-1-常見操作符" class="headerlink" title="9.1.1 常見操作符"></a>9.1.1 常見操作符</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c           代表「change」，修改，刪除內容並進入插入模式</span><br><span class="line">d           代表「delete」，刪除</span><br><span class="line">y           代表「yank」，複製</span><br><span class="line">v           代表「visual」，選中文字，進入視覺模式</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-1-2-操作符範例"><a href="#9-1-2-操作符範例" class="headerlink" title="9.1.2 操作符範例"></a>9.1.2 操作符範例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dgg         刪除到第一行</span><br><span class="line">ye          複製到單字結尾</span><br><span class="line">d$          刪除到行尾</span><br><span class="line">dt;         刪除直到分號為止的內容</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-1-3-操作符雙擊"><a href="#9-1-3-操作符雙擊" class="headerlink" title="9.1.3 操作符雙擊"></a>9.1.3 操作符雙擊</h4><p>大部分操作符連續按兩次（<code>cc</code>&#x2F;<code>dd</code>&#x2F;<code>yy</code>）：將其作用在這一行上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dd          刪除這一行</span><br><span class="line">yy          複製這一行</span><br><span class="line">cc          修改這一行（刪除並進入插入模式）</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-重複與復原操作"><a href="#10-重複與復原操作" class="headerlink" title="10 重複與復原操作"></a>10 重複與復原操作</h2><h3 id="10-1-重複操作：-指令"><a href="#10-1-重複操作：-指令" class="headerlink" title="10.1 重複操作：. 指令"></a>10.1 重複操作：<code>.</code> 指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.           重複上一次修改</span><br><span class="line">u           復原上一次修改</span><br><span class="line">&lt;Ctrl-r&gt;    重做上一次修改</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用場景：</strong></p>
+<ul>
+<li><code>.</code> 指令非常適合用於需要多次重複某一個修改動作的場景</li>
+<li>省去了重複輸入指令，大大提高效率</li>
+<li><code>.</code> 指令可以直觀地看到每一次的變化，在合適的時候停止</li>
+</ul>
+<h2 id="11-批次操作"><a href="#11-批次操作" class="headerlink" title="11 批次操作"></a>11 批次操作</h2><h3 id="11-1-數字-動作"><a href="#11-1-數字-動作" class="headerlink" title="11.1 數字 + 動作"></a>11.1 數字 + 動作</h3><p><strong>(次數)(動作)：重複 count 次 action 動作</strong></p>
+<p>動作可以是移動動作或是編輯動作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4j          向下移動4行</span><br><span class="line">3dw         刪除3個單字</span><br><span class="line">2yy         複製2行</span><br><span class="line">4p          貼上4次</span><br></pre></td></tr></table></figure>
+
+<p><strong>特點：</strong></p>
+<ul>
+<li>數字+動作，是一種重要的批次操作方式，指令直觀，語義明確</li>
+<li>數字+動作則需要預先知道動作的次數</li>
+</ul>
+<h3 id="11-2-批次操作比較"><a href="#11-2-批次操作比較" class="headerlink" title="11.2 批次操作比較"></a>11.2 批次操作比較</h3><p><strong><code>.</code> 指令 vs 數字+動作：</strong></p>
+<ul>
+<li><code>.</code> 指令可以直觀地看到每一次的變化，在合適的時候停止</li>
+<li>數字+動作則需要預先知道動作的次數</li>
+</ul>
+<h2 id="12-實用技巧"><a href="#12-實用技巧" class="headerlink" title="12 實用技巧"></a>12 實用技巧</h2><h3 id="12-1-使用相對行號確定移動範圍"><a href="#12-1-使用相對行號確定移動範圍" class="headerlink" title="12.1 使用相對行號確定移動範圍"></a>12.1 使用相對行號確定移動範圍</h3><p>當涉及行操作時，使用相對行號能夠更直觀地確定範圍</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:set relativenumber     開啟相對行號</span><br><span class="line">:set norelativenumber   關閉相對行號</span><br></pre></td></tr></table></figure>
+
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><ul>
+<li>掌握進階的移動與編輯指令<ul>
+<li>**（重要）**掌握 <code>&#123;操作符&#125;&#123;移動&#125;</code> 的操作哲學</li>
+</ul>
+</li>
+<li>掌握用 <code>.</code> 指令重複上一次修改<ul>
+<li>**（重要）**掌握使用 <code>&#123;次數&#125;&#123;動作&#125;</code> 進行批次操作</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 文字物件操作" class="lazyload">
+        
+        <a href="/2025/08/30/vim_tutorial_part3/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            Vim 文字物件操作
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 命令模式" class="lazyload">
+      
+      <a href="/2025/08/30/vim_tutorial_part5/"></a>
+      <div class="article-nav-caption">後一篇</div>
+      <h3 class="article-nav-title">
+        
+          Vim 命令模式
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      zennflare0908
+    </div>
+    
+      <div>
+        基於&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        6.4k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:23
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">總訪問量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">總訪客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vim%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8%E8%AC%9B%E7%BE%A9-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E7%A7%BB%E5%8B%95%E8%88%87%E7%B7%A8%E8%BC%AF"><span class="toc-number">1.</span> <span class="toc-text">Vim基礎教學講義 第二部分：移動與編輯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E9%80%B2%E9%9A%8E%E7%A7%BB%E5%8B%95%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">8 進階移動指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%9F%BA%E6%96%BC%E5%96%AE%E5%AD%97%E7%9A%84%E7%A7%BB%E5%8B%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">8.1 基於單字的移動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E5%9F%BA%E6%96%BC%E6%90%9C%E5%B0%8B%E7%9A%84%E7%A7%BB%E5%8B%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">8.2 基於搜尋的移動</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-1-%E8%A1%8C%E5%85%A7%E6%90%9C%E5%B0%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">8.2.1 行內搜尋</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-2-%E6%AA%94%E6%A1%88%E4%B8%AD%E6%90%9C%E5%B0%8B"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">8.2.2 檔案中搜尋</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%9F%BA%E6%96%BC%E6%A8%99%E8%A8%98%E7%9A%84%E7%A7%BB%E5%8B%95"><span class="toc-number">1.1.3.</span> <span class="toc-text">8.3 基於標記的移動</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-1-%E5%85%A7%E5%BB%BA%E6%A8%99%E8%A8%98"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">8.3.1 內建標記</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E5%85%B6%E4%BB%96%E5%AF%A6%E7%94%A8%E7%9A%84%E8%B7%B3%E8%BD%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">8.4 其他實用的跳轉</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E7%B7%A8%E8%BC%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%B5%B1"><span class="toc-number">1.2.</span> <span class="toc-text">9 編輯操作系統</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-Operator-Motion-Action"><span class="toc-number">1.2.1.</span> <span class="toc-text">9.1 Operator + Motion &#x3D; Action</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-1-%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">9.1.1 常見操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-2-%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%AF%84%E4%BE%8B"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">9.1.2 操作符範例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-3-%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%9B%99%E6%93%8A"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">9.1.3 操作符雙擊</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E9%87%8D%E8%A4%87%E8%88%87%E5%BE%A9%E5%8E%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">10 重複與復原操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E9%87%8D%E8%A4%87%E6%93%8D%E4%BD%9C%EF%BC%9A-%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">10.1 重複操作：. 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%89%B9%E6%AC%A1%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">11 批次操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-%E6%95%B8%E5%AD%97-%E5%8B%95%E4%BD%9C"><span class="toc-number">1.4.1.</span> <span class="toc-text">11.1 數字 + 動作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-%E6%89%B9%E6%AC%A1%E6%93%8D%E4%BD%9C%E6%AF%94%E8%BC%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">11.2 批次操作比較</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%AF%A6%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.</span> <span class="toc-text">12 實用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1-%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%B0%8D%E8%A1%8C%E8%99%9F%E7%A2%BA%E5%AE%9A%E7%A7%BB%E5%8B%95%E7%AF%84%E5%9C%8D"><span class="toc-number">1.5.1.</span> <span class="toc-text">12.1 使用相對行號確定移動範圍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%B5%90"><span class="toc-number">1.6.</span> <span class="toc-text">小結</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js" integrity="sha384-vLev0II0HKFaxkcm+&#x2F;7kX5IGwVFBASkGchU311wmU&#x2F;veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "zennflare0908",
+          title: "Vim 移動與編輯",
+          url: "https://benson0418.github.io/2025/08/30/vim_tutorial_part2/",
+          excerpt: "",
+          description: "",
+          stripContent: "Vim基礎教學講義 第二部分：移動與編輯8 進階移動指令8.1 基於單字的移動簡單的 hjkl 顯然無法滿足我們的需要 基本單字移動： 1234w     代表「word」，跳轉到下一處單字的開頭b     代表「back」，跳轉到上一處單字的開頭e     代表「end」，跳轉到下一處單字的結尾ge    e的反向版本，跳轉到上一處單字的結尾  **大寫版本 WBE：**對應的單字是連續的非空字元（以空白為分隔） 8.2 基於搜尋的移動8.2.1 行內搜尋123456f&amp;#123;char&amp;#",
+          date: "Sat Aug 30 2025 21:00:00 GMT+0800",
+          updated: "Sat Aug 30 2025 02:22:28 GMT+0800",
+          cover: "https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

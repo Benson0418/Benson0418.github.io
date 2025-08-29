@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://benson0418.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
   
   <title>
-    Hello World |
+    Vim 暫存器與巨集 |
     
     N95&#39;s Blog
   </title>
@@ -35,17 +35,17 @@
 
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="Vim基礎教學講義 第四部分：暫存器與巨集20 暫存器20.1 暫存器概念 Vim提供了許多暫存器用於存放內容，可以理解為剪貼簿 一個字元對應一個暫存器（如 a-z、0-9）  20.2 特殊暫存器1234&quot;           預設暫存器，平時複製、刪除的內容都放在裡面%           目前檔案名.           上一次插入的內容:           上一次執行的指令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://benson0418.github.io/en/2025/08/29/hello-world/index.html">
+<meta property="og:title" content="Vim 暫存器與巨集">
+<meta property="og:url" content="https://benson0418.github.io/en/2025/08/30/vim_tutorial_part4/index.html">
 <meta property="og:site_name" content="N95&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Vim基礎教學講義 第四部分：暫存器與巨集20 暫存器20.1 暫存器概念 Vim提供了許多暫存器用於存放內容，可以理解為剪貼簿 一個字元對應一個暫存器（如 a-z、0-9）  20.2 特殊暫存器1234&quot;           預設暫存器，平時複製、刪除的內容都放在裡面%           目前檔案名.           上一次插入的內容:           上一次執行的指令">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-08-29T14:48:44.883Z">
-<meta property="article:modified_time" content="2025-08-29T14:48:44.883Z">
+<meta property="article:published_time" content="2025-08-30T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-29T18:22:16.745Z">
 <meta property="article:author" content="zennflare0908">
-<meta property="article:tag" content="N95, zennflow, zennflare, zennflame, Seferiso">
+<meta property="article:tag" content="vim">
 <meta name="twitter:card" content="summary">
   
   
@@ -211,9 +211,9 @@
           item.addEventListener("click", () => {
             const langMap = {};
             
-              langMap['zh-TW'] = '/2025/08/29/hello-world/';
+              langMap['zh-TW'] = '/2025/08/30/vim_tutorial_part4/';
             
-              langMap['en'] = '/en/2025/08/29/hello-world/';
+              langMap['en'] = '/en/2025/08/30/vim_tutorial_part4/';
             
             selectedLang.textContent = item.textContent;
             selectItems.classList.remove("show");
@@ -236,16 +236,8 @@
 </div>
 <header id="header">
   
-    
-      
-        <picture>
-          
-        </picture>
-        
-          <img crossorigin="anonymous" fetchpriority="high" src="/images/banner.webp" alt="Hello World">
-        
-      
-    
+    <picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" alt="Vim 暫存器與巨集">
   
   <div id="header-outer">
     <div id="header-title">
@@ -253,7 +245,7 @@
         
         
           <span id="logo">
-            <h1 data-aos="slide-up">Hello World</h1>
+            <h1 data-aos="slide-up">Vim 暫存器與巨集</h1>
           </span>
         
       
@@ -283,7 +275,7 @@
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vim%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8%E8%AC%9B%E7%BE%A9-%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86%EF%BC%9A%E6%9A%AB%E5%AD%98%E5%99%A8%E8%88%87%E5%B7%A8%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">Vim基礎教學講義 第四部分：暫存器與巨集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E6%9A%AB%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">20 暫存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#20-1-%E6%9A%AB%E5%AD%98%E5%99%A8%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">20.1 暫存器概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-2-%E7%89%B9%E6%AE%8A%E6%9A%AB%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">20.2 特殊暫存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-3-%E6%8C%87%E5%AE%9A%E6%9A%AB%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.3.</span> <span class="toc-text">20.3 指定暫存器操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20-3-1-%E6%8C%87%E5%AE%9A%E6%9A%AB%E5%AD%98%E5%99%A8%E7%AF%84%E4%BE%8B"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">20.3.1 指定暫存器範例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-3-2-%E6%9A%AB%E5%AD%98%E5%99%A8%E9%99%84%E5%8A%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">20.3.2 暫存器附加操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%B7%A8%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">21 巨集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1-%E5%B7%A8%E9%9B%86%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">21.1 巨集概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-2-%E5%B7%A8%E9%9B%86%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">21.2 巨集操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3-%E5%B7%A8%E9%9B%86%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">21.3 巨集使用流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-4-%E5%B7%A8%E9%9B%86%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99"><span class="toc-number">1.2.4.</span> <span class="toc-text">21.4 巨集最佳實務</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#21-4-1-%E8%AE%93%E4%BD%A0%E7%9A%84%E5%B7%A8%E9%9B%86%E5%B0%8D%E9%80%A3%E7%BA%8C%E9%87%8D%E6%92%AD%E5%8F%8B%E5%A5%BD"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">21.4.1 讓你的巨集對連續重播友好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-4-2-%E5%B7%A8%E9%9B%86%E7%9A%84%E6%93%B4%E5%85%85"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">21.4.2 巨集的擴充</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%B5%90"><span class="toc-number">1.3.</span> <span class="toc-text">小結</span></a></li></ol></li></ol>
   
 </div>
 </div>
@@ -376,18 +368,22 @@
   
 </aside>
 
-          <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-vim_tutorial_part4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2025-08-29T14:48:44.883Z" itemprop="datePublished">2025-08-29</time>
-    <time style="display: none;" id="post-update-time">2025-08-29</time>
+    <time datetime="2025-08-30T13:00:00.000Z" itemprop="datePublished">2025-08-30</time>
+    <time style="display: none;" id="post-update-time">2025-08-30</time>
   </span>
   
 </div>
 
       
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/vim/" data-aos="zoom-in">vim</a>
+  </div>
+
 
     </div>
     <div class="hr-line"></div>
@@ -396,19 +392,54 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="Vim基礎教學講義-第四部分：暫存器與巨集"><a href="#Vim基礎教學講義-第四部分：暫存器與巨集" class="headerlink" title="Vim基礎教學講義 第四部分：暫存器與巨集"></a>Vim基礎教學講義 第四部分：暫存器與巨集</h1><h2 id="20-暫存器"><a href="#20-暫存器" class="headerlink" title="20 暫存器"></a>20 暫存器</h2><h3 id="20-1-暫存器概念"><a href="#20-1-暫存器概念" class="headerlink" title="20.1 暫存器概念"></a>20.1 暫存器概念</h3><ul>
+<li>Vim提供了許多暫存器用於存放內容，可以理解為剪貼簿</li>
+<li>一個字元對應一個暫存器（如 <code>a-z</code>、<code>0-9</code>）</li>
+</ul>
+<h3 id="20-2-特殊暫存器"><a href="#20-2-特殊暫存器" class="headerlink" title="20.2 特殊暫存器"></a>20.2 特殊暫存器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;           預設暫存器，平時複製、刪除的內容都放在裡面</span><br><span class="line">%           目前檔案名</span><br><span class="line">.           上一次插入的內容</span><br><span class="line">:           上一次執行的指令</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p><strong>檢視暫存器內容：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:reg        檢視所有暫存器內容</span><br><span class="line">:reg a      檢視a暫存器內容</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="20-3-指定暫存器操作"><a href="#20-3-指定暫存器操作" class="headerlink" title="20.3 指定暫存器操作"></a>20.3 指定暫存器操作</h3><p>在複製&#x2F;刪除操作前加上 <code>&quot;&#123;暫存器&#125;</code> 就可以指定本次操作所用的暫存器</p>
+<p>只要涉及暫存器操作的都可以這樣指定</p>
+<h4 id="20-3-1-指定暫存器範例"><a href="#20-3-1-指定暫存器範例" class="headerlink" title="20.3.1 指定暫存器範例"></a>20.3.1 指定暫存器範例</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;ayy        將這一行複製到a暫存器中</span><br><span class="line">&quot;bdiw       將單字刪除，儲存到b暫存器中</span><br><span class="line">&quot;cp         將c暫存器中的內容貼上出來</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>**常見用途：**將想要持久儲存的文字放到特定暫存器裡，隨時進行貼上，避免被覆蓋</p>
+<h4 id="20-3-2-暫存器附加操作"><a href="#20-3-2-暫存器附加操作" class="headerlink" title="20.3.2 暫存器附加操作"></a>20.3.2 暫存器附加操作</h4><p>**暫存器字元大寫：**附加（append）而非覆蓋</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Ayy        將這一行附加到A暫存器中（不覆蓋原內容）</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h2 id="21-巨集"><a href="#21-巨集" class="headerlink" title="21 巨集"></a>21 巨集</h2><h3 id="21-1-巨集概念"><a href="#21-1-巨集概念" class="headerlink" title="21.1 巨集概念"></a>21.1 巨集概念</h3><p>**巨集（Macro）：**錄製一系列鍵盤操作，並允許我們重播這些操作</p>
+<ul>
+<li>操作序列儲存在指定的暫存器中</li>
+</ul>
+<h3 id="21-2-巨集操作指令"><a href="#21-2-巨集操作指令" class="headerlink" title="21.2 巨集操作指令"></a>21.2 巨集操作指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">q&#123;暫存器&#125;   開始錄製巨集，存在暫存器中</span><br><span class="line">q           錄製過程中按q退出錄製</span><br><span class="line">@&#123;暫存器&#125;   重播暫存器中的操作</span><br><span class="line">@@          重播上一次巨集操作</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-3-巨集使用流程"><a href="#21-3-巨集使用流程" class="headerlink" title="21.3 巨集使用流程"></a>21.3 巨集使用流程</h3><p><strong>常見用法：</strong></p>
+<ol>
+<li><code>q&#123;暫存器&#125;</code> 錄製一段操作</li>
+<li><code>@&#123;暫存器&#125;</code> 重播</li>
+<li>然後一直 <code>@@</code> 重播</li>
+</ol>
+<p><strong>注意：</strong><code>.</code> 指令對巨集不生效，<code>.</code> 指令只記錄上一次修改，而巨集可能包含多次修改</p>
+<h3 id="21-4-巨集最佳實務"><a href="#21-4-巨集最佳實務" class="headerlink" title="21.4 巨集最佳實務"></a>21.4 巨集最佳實務</h3><h4 id="21-4-1-讓你的巨集對連續重播友好"><a href="#21-4-1-讓你的巨集對連續重播友好" class="headerlink" title="21.4.1 讓你的巨集對連續重播友好"></a>21.4.1 讓你的巨集對連續重播友好</h4><p><strong>建議步驟：</strong></p>
+<ol>
+<li><strong>讓你的游標移動更加通用</strong></li>
+<li><strong>假設你要在多個特定的位置進行特定的操作，一個好的習慣是在巨集錄製的最後，跳轉到下一個需要編輯的位置</strong></li>
+</ol>
+<p>即，巨集包括：<strong>【編輯動作】</strong> + <strong>【跳轉到下一個需要編輯的位置】</strong></p>
+<p>這樣一來，連續重播就可以實現對所有需要編輯的位置進行編輯操作</p>
+<h4 id="21-4-2-巨集的擴充"><a href="#21-4-2-巨集的擴充" class="headerlink" title="21.4.2 巨集的擴充"></a>21.4.2 巨集的擴充</h4><p><strong>透過大寫的暫存器，在巨集的後面新增指令</strong></p>
+<p>如果巨集是重播友好的，允許我們使用 <code>[次數]@[暫存器]</code> 直接重播指定次數</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5@a         重播a暫存器中的巨集5次</span><br></pre></td></tr></table></figure>
+
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><ul>
+<li>了解暫存器的概念</li>
+<li>了解常用的內建暫存器</li>
+<li>**（重要）**掌握使用巨集進行批次操作</li>
+<li>掌握 <code>(操作符)(文字物件)</code> 的操作哲學</li>
+</ul>
 
       
     </div>
@@ -422,6 +453,8 @@
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/vim/" rel="tag">vim</a></li></ul>
+
 
     </footer>
   </div>
@@ -431,20 +464,31 @@
       
       <div class="article-nav-link-wrap article-nav-link-left">
         
-          
-          
-            <img data-src="blog/source/images/master1200.jpg" data-sizes="auto" alt="" class="lazyload">
-          
+          <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 命令模式" class="lazyload">
         
-        <a href="/en/2025/08/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"></a>
+        <a href="/en/2025/08/30/vim_tutorial_part5/"></a>
         <div class="article-nav-caption">Prev</div>
         <h3 class="article-nav-title">
           
-            (no title)
+            Vim 命令模式
           
         </h3>
       </div>
     
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 回顧與總結" class="lazyload">
+      
+      <a href="/en/2025/08/30/vim_tutorial_part6/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Vim 回顧與總結
+        
+      </h3>
+    </div>
     
   </nav>
 
@@ -523,7 +567,7 @@
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vim%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8%E8%AC%9B%E7%BE%A9-%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86%EF%BC%9A%E6%9A%AB%E5%AD%98%E5%99%A8%E8%88%87%E5%B7%A8%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">Vim基礎教學講義 第四部分：暫存器與巨集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E6%9A%AB%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">20 暫存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#20-1-%E6%9A%AB%E5%AD%98%E5%99%A8%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">20.1 暫存器概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-2-%E7%89%B9%E6%AE%8A%E6%9A%AB%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">20.2 特殊暫存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-3-%E6%8C%87%E5%AE%9A%E6%9A%AB%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.3.</span> <span class="toc-text">20.3 指定暫存器操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#20-3-1-%E6%8C%87%E5%AE%9A%E6%9A%AB%E5%AD%98%E5%99%A8%E7%AF%84%E4%BE%8B"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">20.3.1 指定暫存器範例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-3-2-%E6%9A%AB%E5%AD%98%E5%99%A8%E9%99%84%E5%8A%A0%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">20.3.2 暫存器附加操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%B7%A8%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">21 巨集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-1-%E5%B7%A8%E9%9B%86%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">21.1 巨集概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-2-%E5%B7%A8%E9%9B%86%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">21.2 巨集操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-3-%E5%B7%A8%E9%9B%86%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">21.3 巨集使用流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-4-%E5%B7%A8%E9%9B%86%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99"><span class="toc-number">1.2.4.</span> <span class="toc-text">21.4 巨集最佳實務</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#21-4-1-%E8%AE%93%E4%BD%A0%E7%9A%84%E5%B7%A8%E9%9B%86%E5%B0%8D%E9%80%A3%E7%BA%8C%E9%87%8D%E6%92%AD%E5%8F%8B%E5%A5%BD"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">21.4.1 讓你的巨集對連續重播友好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-4-2-%E5%B7%A8%E9%9B%86%E7%9A%84%E6%93%B4%E5%85%85"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">21.4.2 巨集的擴充</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%B5%90"><span class="toc-number">1.3.</span> <span class="toc-text">小結</span></a></li></ol></li></ol>
   
 </div>
 </div>
@@ -683,14 +727,14 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "zennflare0908",
-          title: "Hello World",
-          url: "https://benson0418.github.io/2025/08/29/hello-world/",
+          title: "Vim 暫存器與巨集",
+          url: "https://benson0418.github.io/2025/08/30/vim_tutorial_part4/",
           excerpt: "",
           description: "",
-          stripContent: "Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &amp;quot;My New Po",
-          date: "Fri Aug 29 2025 22:48:44 GMT+0800",
-          updated: "Fri Aug 29 2025 22:48:44 GMT+0800",
-          cover: "/images/banner.webp",
+          stripContent: "Vim基礎教學講義 第四部分：暫存器與巨集20 暫存器20.1 暫存器概念 Vim提供了許多暫存器用於存放內容，可以理解為剪貼簿 一個字元對應一個暫存器（如 a-z、0-9）  20.2 特殊暫存器1234&amp;quot;           預設暫存器，平時複製、刪除的內容都放在裡面%           目前檔案名.           上一次插入的內容:           上一次執行的指令  檢視暫存器內容： 12:reg        檢視所有暫存器內容:reg a      檢視a暫存器",
+          date: "Sat Aug 30 2025 21:00:00 GMT+0800",
+          updated: "Sat Aug 30 2025 02:22:16 GMT+0800",
+          cover: "https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263",
         };
       </script>
        
