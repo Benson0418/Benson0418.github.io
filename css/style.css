@@ -1931,7 +1931,7 @@ button {
 .article-entry pre,
 .article-entry code,
 .article-entry kbd {
-  font-family: 'Menlo','Monaco','Consolas','monospace';
+  font-family: 'JetBrains Mono', 'Menlo','Monaco','Consolas','monospace';
   font-size: 95%;
   transition: 0.3s;
   word-break: break-word;
@@ -2021,7 +2021,7 @@ button {
 }
 .article-entry .gist .gist-file {
   border: none;
-  font-family: 'Menlo','Monaco','Consolas','monospace';
+  font-family: 'JetBrains Mono', 'Menlo','Monaco','Consolas','monospace';
   margin: 0;
 }
 .article-entry .gist .gist-file .gist-data {
