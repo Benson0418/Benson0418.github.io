@@ -389,10 +389,44 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/08/30/vim_tutorial_part1/" aria-label="Vim 基礎"></a>
+      <a class="post-link" href="/2025/08/30/vim_tutorial_part2/" aria-label="Vim 移動與編輯"></a>
     
     
     <div class="post-cover-left">
+      
+        <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 移動與編輯" class="lazyload">
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-08-30</span>
+        
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>4 分鐘</span>
+      </div>
+      <h2 class="post-title">Vim 移動與編輯</h2>
+      <article class="post-article">
+        
+          Vim筆記 第二部分：移動與編輯8 進階移動指令8.1 基於單字的移動簡單的 hjkl 顯然無法滿足我們的需要
+基本單字移動：
+1234w     代表「word」，跳轉到下一處單字的開頭b     代表「back」，跳轉到上一處單字的開頭e     代表「end」，跳轉到下一處單字的結尾ge    e的反向版本，跳轉到上一處單字的結尾
+
+**大寫版本 WBE：**對應的單字是連續的非空字元（以空白為分隔）
+8.2 基於搜尋的移動8.2.1 行內搜尋123456f&amp;#123;char&amp;#125;     跳轉到本行下一個 char 字元出現處t&amp;#123;char&amp;#125;     跳轉到本
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/08/30/vim_tutorial_part1/" aria-label="Vim 基礎"></a>
+    
+    
+    <div class="post-cover-right">
       
         <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 基礎" class="lazyload">
       
@@ -433,12 +467,12 @@ Visua
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/08/30/vim_tutorial_part3/" aria-label="Vim 文字物件操作"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 文字物件操作" class="lazyload">
       
@@ -469,12 +503,12 @@ Visua
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/08/30/vim_tutorial_part4/" aria-label="Vim 暫存器與巨集"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 暫存器與巨集" class="lazyload">
       
@@ -507,12 +541,12 @@ Vim提供了許多暫存器用於存放內容，可以理解為剪貼簿
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/08/30/vim_tutorial_part5/" aria-label="Vim 命令模式"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 命令模式" class="lazyload">
       
@@ -542,40 +576,6 @@ Ex指令：特殊的指令，適用於 Command 模式
 
 24.2 基本Ex指令一些Ex指令（[x] 為暫存器，是可選項）：
 123:[範圍]delete [x]    刪
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2025/08/30/vim_tutorial_part2/" aria-label="Vim 移動與編輯"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 移動與編輯" class="lazyload">
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-08-30</span>
-        
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>4 分鐘</span>
-      </div>
-      <h2 class="post-title">Vim 移動與編輯</h2>
-      <article class="post-article">
-        
-          Vim筆記 第二部分：移動與編輯8 進階移動指令8.1 基於單字的移動簡單的 hjkl 顯然無法滿足我們的需要
-基本單字移動：
-1234w     代表「word」，跳轉到下一處單字的開頭b     代表「back」，跳轉到上一處單字的開頭e     代表「end」，跳轉到下一處單字的結尾ge    e的反向版本，跳轉到上一處單字的結尾
-
-**大寫版本 WBE：**對應的單字是連續的非空字元（以空白為分隔）
-8.2 基於搜尋的移動8.2.1 行內搜尋123456f&amp;#123;char&amp;#125;     跳轉到本行下一個 char 字元出現處t&amp;#123;char&amp;#125;     跳轉到本
         
       </article>
     </div>
@@ -653,7 +653,7 @@ Command模式
       
         
         
-          <img data-src="blog/source/images/master1200.jpg" data-sizes="auto" alt="" class="lazyload">
+          <img data-src="blog/source/images/master1200.png" data-sizes="auto" alt="" class="lazyload">
         
       
     </div>
@@ -686,7 +686,7 @@ Command模式
       
         
         
-          <img data-src="blog/source/images/master1200.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
+          <img data-src="blog/source/images/master1200.png" data-sizes="auto" alt="Hello World" class="lazyload">
         
       
     </div>
