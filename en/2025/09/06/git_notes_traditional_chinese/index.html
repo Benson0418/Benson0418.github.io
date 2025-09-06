@@ -1,0 +1,940 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://benson0418.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    git 備忘錄 |
+    
+    N95&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CJetBrains%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CJetBrains%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Git語法速查備忘錄基本配置1234567891011121314# 設定使用者資訊git config --global user.name &quot;使用者名稱&quot;git config --global user.email &quot;email@example.com&quot;# 檢視設定git config --global user.namegit config --glo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 備忘錄">
+<meta property="og:url" content="https://benson0418.github.io/en/2025/09/06/git_notes_traditional_chinese/index.html">
+<meta property="og:site_name" content="N95&#39;s Blog">
+<meta property="og:description" content="Git語法速查備忘錄基本配置1234567891011121314# 設定使用者資訊git config --global user.name &quot;使用者名稱&quot;git config --global user.email &quot;email@example.com&quot;# 檢視設定git config --global user.namegit config --glo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-06T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:25:20.511Z">
+<meta property="article:author" content="zennflare0908">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="N95's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU&#x2F;voDBY5XE2lVh" crossorigin="anonymous">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-TW" >正體中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-TW'] = '/2025/09/06/git_notes_traditional_chinese/';
+            
+              langMap['en'] = '/en/2025/09/06/git_notes_traditional_chinese/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="/../images/gitLogo.png" alt="git 備忘錄">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <span id="logo">
+            <h1 data-aos="slide-up">git 備忘錄</h1>
+          </span>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E8%AA%9E%E6%B3%95%E9%80%9F%E6%9F%A5%E5%82%99%E5%BF%98%E9%8C%84"><span class="toc-number">1.</span> <span class="toc-text">Git語法速查備忘錄</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%88%87%E5%80%89%E5%BA%AB"><span class="toc-number">1.2.</span> <span class="toc-text">初始化與倉庫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A4%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">基礎操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">分支操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%A0%E7%AB%AF%E5%80%89%E5%BA%AB%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">遠端倉庫操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">SSH配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%9D%E7%AA%81%E8%A7%A3%E6%B1%BA"><span class="toc-number">1.7.</span> <span class="toc-text">衝突解決</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%AA%94%E6%A1%88"><span class="toc-number">1.8.</span> <span class="toc-text">忽略檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.</span> <span class="toc-text">IDEA快捷操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%85%A5%E5%8F%A3"><span class="toc-number">1.9.1.</span> <span class="toc-text">主要入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.2.</span> <span class="toc-text">常用操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.</span> <span class="toc-text">工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.1.</span> <span class="toc-text">日常開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.2.</span> <span class="toc-text">分支開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%94%E4%BD%9C%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.3.</span> <span class="toc-text">協作開發流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8Git%E6%8C%87%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">1.11.</span> <span class="toc-text">常用Git指令速查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E7%8B%80%E6%85%8B%E6%A8%99%E8%AD%98"><span class="toc-number">1.12.</span> <span class="toc-text">檔案狀態標識</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%88%97"><span class="toc-number">1.12.1.</span> <span class="toc-text">命令列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA"><span class="toc-number">1.12.2.</span> <span class="toc-text">IDEA</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:dges030712@gmail.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Benson0418 itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-telegram sidebar-social-icon">
+      <a href=https://t.me/zodiac2712 itemprop="url" target="_blank" aria-label="telegram" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-discord sidebar-social-icon">
+      <a href=https://discord.gg/FgQpzTNjQs itemprop="url" target="_blank" aria-label="discord" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-git_notes_traditional_chinese" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-09-06T15:00:00.000Z" itemprop="datePublished">2025-09-06</time>
+    <time style="display: none;" id="post-update-time">2025-09-06</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/git/" data-aos="zoom-in">git</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Git語法速查備忘錄"><a href="#Git語法速查備忘錄" class="headerlink" title="Git語法速查備忘錄"></a>Git語法速查備忘錄</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 設定使用者資訊</span></span><br><span class="line">git config --global user.name <span class="string">&quot;使用者名稱&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;email@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 檢視設定</span></span><br><span class="line">git config --global user.name</span><br><span class="line">git config --global user.email</span><br><span class="line"></span><br><span class="line"><span class="comment"># 設定別名</span></span><br><span class="line"><span class="built_in">alias</span> git-log=<span class="string">&#x27;git log --pretty=oneline --all --graph --abbrev-commit&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">&#x27;ls -al&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解決亂碼</span></span><br><span class="line">git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化與倉庫"><a href="#初始化與倉庫" class="headerlink" title="初始化與倉庫"></a>初始化與倉庫</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化本地倉庫</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 克隆遠端倉庫</span></span><br><span class="line">git <span class="built_in">clone</span> &lt;倉庫URL&gt; [本地目錄名]</span><br></pre></td></tr></table></figure>
+
+<h2 id="基礎操作"><a href="#基礎操作" class="headerlink" title="基礎操作"></a>基礎操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 檢視狀態</span></span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新增檔案到暫存區</span></span><br><span class="line">git add 檔名                <span class="comment"># 新增單一檔案</span></span><br><span class="line">git add .                   <span class="comment"># 新增所有檔案</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交到本地倉庫</span></span><br><span class="line">git commit -m <span class="string">&quot;提交訊息&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 檢視提交日誌</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line">git <span class="built_in">log</span> --pretty=oneline --all --graph --abbrev-commit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 版本回退/還原</span></span><br><span class="line">git reset --hard commitID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 檢視所有操作記錄（包括已刪除）</span></span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 檢視分支</span></span><br><span class="line">git branch                  <span class="comment"># 檢視本地分支</span></span><br><span class="line">git branch -vv              <span class="comment"># 檢視關聯關係</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立分支</span></span><br><span class="line">git branch 分支名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切換分支</span></span><br><span class="line">git checkout 分支名</span><br><span class="line">git checkout -b 分支名       <span class="comment"># 建立並切換</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合併分支</span></span><br><span class="line">git merge 分支名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刪除分支</span></span><br><span class="line">git branch -d 分支名         <span class="comment"># 安全刪除</span></span><br><span class="line">git branch -D 分支名         <span class="comment"># 強制刪除</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="遠端倉庫操作"><a href="#遠端倉庫操作" class="headerlink" title="遠端倉庫操作"></a>遠端倉庫操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 檢視遠端倉庫</span></span><br><span class="line">git remote</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新增遠端倉庫</span></span><br><span class="line">git remote add origin &lt;SSH-URL&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送到遠端</span></span><br><span class="line">git push origin 分支名</span><br><span class="line">git push --set-upstream origin 分支名  <span class="comment"># 首次推送並建立關聯</span></span><br><span class="line">git push                              <span class="comment"># 已關聯分支的推送</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 從遠端拉取</span></span><br><span class="line">git fetch [遠端名] [分支名]    <span class="comment"># 抓取但不合併</span></span><br><span class="line">git pull [遠端名] [分支名]     <span class="comment"># 拉取並合併</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合併遠端分支</span></span><br><span class="line">git merge origin/分支名</span><br></pre></td></tr></table></figure>
+
+<h2 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成SSH金鑰</span></span><br><span class="line">ssh-keygen -t rsa</span><br><span class="line"></span><br><span class="line"><span class="comment"># 檢視公鑰</span></span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line"><span class="comment"># 測試SSH連接</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T git@gitee.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="衝突解決"><a href="#衝突解決" class="headerlink" title="衝突解決"></a>衝突解決</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 發生衝突時，手動編輯衝突檔案</span></span><br><span class="line"><span class="comment"># 2. 刪除衝突標記 &lt;&lt;&lt;&lt;&lt;&lt;&lt; ======= &gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></span><br><span class="line"><span class="comment"># 3. 新增解決後的檔案</span></span><br><span class="line">git add 衝突檔案名</span><br><span class="line"><span class="comment"># 4. 提交</span></span><br><span class="line">git commit -m <span class="string">&quot;解決衝突&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="忽略檔案"><a href="#忽略檔案" class="headerlink" title="忽略檔案"></a>忽略檔案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立 .gitignore 檔案</span></span><br><span class="line"><span class="built_in">touch</span> .gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常見忽略規則</span></span><br><span class="line">*.<span class="built_in">log</span>                       <span class="comment"># 忽略所有log檔案</span></span><br><span class="line">*.tmp                       <span class="comment"># 忽略所有tmp檔案</span></span><br><span class="line">node_modules/              <span class="comment"># 忽略整個目錄</span></span><br><span class="line">!important.log             <span class="comment"># 不忽略此檔案</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="IDEA快捷操作"><a href="#IDEA快捷操作" class="headerlink" title="IDEA快捷操作"></a>IDEA快捷操作</h2><h3 id="主要入口"><a href="#主要入口" class="headerlink" title="主要入口"></a>主要入口</h3><ul>
+<li><strong>VCS選單</strong> → Git相關操作</li>
+<li><strong>右下角分支</strong> → 切換&#x2F;建立分支</li>
+<li><strong>Ctrl+K</strong> → 快速提交</li>
+<li><strong>Ctrl+Shift+K</strong> → 推送</li>
+</ul>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
+<li><strong>Add</strong> → 新增到暫存區</li>
+<li><strong>Commit</strong> → 提交到本地</li>
+<li><strong>Push</strong> → 推送到遠端</li>
+<li><strong>Pull</strong> → 從遠端拉取</li>
+<li><strong>Merge</strong> → 合併分支</li>
+</ul>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><h3 id="日常開發流程"><a href="#日常開發流程" class="headerlink" title="日常開發流程"></a>日常開發流程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull                    <span class="comment"># 1. 拉取最新程式碼</span></span><br><span class="line"><span class="comment"># 2. 開發程式碼</span></span><br><span class="line">git add .                   <span class="comment"># 3. 新增到暫存區</span></span><br><span class="line">git commit -m <span class="string">&quot;功能描述&quot;</span>     <span class="comment"># 4. 提交到本地</span></span><br><span class="line">git push                    <span class="comment"># 5. 推送到遠端</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="分支開發流程"><a href="#分支開發流程" class="headerlink" title="分支開發流程"></a>分支開發流程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature/新功能  <span class="comment"># 1. 建立功能分支</span></span><br><span class="line"><span class="comment"># 2. 開發新功能</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;完成新功能&quot;</span></span><br><span class="line">git checkout main           <span class="comment"># 3. 切換回主分支</span></span><br><span class="line">git pull                    <span class="comment"># 4. 拉取最新程式碼</span></span><br><span class="line">git merge feature/新功能     <span class="comment"># 5. 合併功能分支</span></span><br><span class="line">git push                    <span class="comment"># 6. 推送到遠端</span></span><br><span class="line">git branch -d feature/新功能  <span class="comment"># 7. 刪除功能分支</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="協作開發流程"><a href="#協作開發流程" class="headerlink" title="協作開發流程"></a>協作開發流程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;URL&gt;             <span class="comment"># 1. 克隆專案</span></span><br><span class="line">git checkout -b 個人分支     <span class="comment"># 2. 建立個人分支</span></span><br><span class="line"><span class="comment"># 3. 開發功能</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;完成功能&quot;</span></span><br><span class="line">git push origin 個人分支     <span class="comment"># 4. 推送個人分支</span></span><br><span class="line"><span class="comment"># 5. 在平台上建立Pull Request/Merge Request</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用Git指令速查"><a href="#常用Git指令速查" class="headerlink" title="常用Git指令速查"></a>常用Git指令速查</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git status</code></td>
+<td>檢視檔案狀態</td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>新增所有變更</td>
+</tr>
+<tr>
+<td><code>git commit -m &quot;msg&quot;</code></td>
+<td>提交變更</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>推送到遠端</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>從遠端拉取</td>
+</tr>
+<tr>
+<td><code>git branch</code></td>
+<td>檢視分支</td>
+</tr>
+<tr>
+<td><code>git checkout -b 分支名</code></td>
+<td>建立並切換分支</td>
+</tr>
+<tr>
+<td><code>git merge 分支名</code></td>
+<td>合併分支</td>
+</tr>
+<tr>
+<td><code>git log --oneline</code></td>
+<td>檢視提交歷史</td>
+</tr>
+<tr>
+<td><code>git reset --hard HEAD^</code></td>
+<td>回退一個版本</td>
+</tr>
+</tbody></table>
+<h2 id="檔案狀態標識"><a href="#檔案狀態標識" class="headerlink" title="檔案狀態標識"></a>檔案狀態標識</h2><h3 id="命令列"><a href="#命令列" class="headerlink" title="命令列"></a>命令列</h3><ul>
+<li><strong>Untracked</strong> → 未追蹤檔案</li>
+<li><strong>Modified</strong> → 已修改檔案</li>
+<li><strong>Staged</strong> → 暫存區檔案</li>
+</ul>
+<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h3><ul>
+<li><strong>🟢 綠色</strong> → 已新增到Git</li>
+<li><strong>🔴 紅色</strong> → 未新增到Git&#x2F;衝突</li>
+<li><strong>⚪ 灰色</strong> → 已忽略檔案</li>
+<li><strong>🟡 黃色</strong> → 已修改檔案</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/git/" rel="tag">git</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="https://media.discordapp.net/attachments/1407022155324981351/1411053106715951114/vim.png?ex=68b3411c&is=68b1ef9c&hm=6487a8da0d64f522ad41929942a39a2476bcaebb5b7c429eed327b1d86194bcf&=&format=webp&quality=lossless&width=500&height=263" data-sizes="auto" alt="Vim 基礎" class="lazyload">
+      
+      <a href="/en/2025/08/30/vim_tutorial_part1/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Vim 基礎
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      zennflare0908
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        7.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:25
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E8%AA%9E%E6%B3%95%E9%80%9F%E6%9F%A5%E5%82%99%E5%BF%98%E9%8C%84"><span class="toc-number">1.</span> <span class="toc-text">Git語法速查備忘錄</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%88%87%E5%80%89%E5%BA%AB"><span class="toc-number">1.2.</span> <span class="toc-text">初始化與倉庫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A4%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">基礎操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">分支操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%A0%E7%AB%AF%E5%80%89%E5%BA%AB%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">遠端倉庫操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">SSH配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%9D%E7%AA%81%E8%A7%A3%E6%B1%BA"><span class="toc-number">1.7.</span> <span class="toc-text">衝突解決</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%AA%94%E6%A1%88"><span class="toc-number">1.8.</span> <span class="toc-text">忽略檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.</span> <span class="toc-text">IDEA快捷操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%85%A5%E5%8F%A3"><span class="toc-number">1.9.1.</span> <span class="toc-text">主要入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.2.</span> <span class="toc-text">常用操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.</span> <span class="toc-text">工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.1.</span> <span class="toc-text">日常開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.2.</span> <span class="toc-text">分支開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%94%E4%BD%9C%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.10.3.</span> <span class="toc-text">協作開發流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8Git%E6%8C%87%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">1.11.</span> <span class="toc-text">常用Git指令速查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E7%8B%80%E6%85%8B%E6%A8%99%E8%AD%98"><span class="toc-number">1.12.</span> <span class="toc-text">檔案狀態標識</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%88%97"><span class="toc-number">1.12.1.</span> <span class="toc-text">命令列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA"><span class="toc-number">1.12.2.</span> <span class="toc-text">IDEA</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:dges030712@gmail.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Benson0418 itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-telegram sidebar-social-icon">
+      <a href=https://t.me/zodiac2712 itemprop="url" target="_blank" aria-label="telegram" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-discord sidebar-social-icon">
+      <a href=https://discord.gg/FgQpzTNjQs itemprop="url" target="_blank" aria-label="discord" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js" integrity="sha384-vLev0II0HKFaxkcm+&#x2F;7kX5IGwVFBASkGchU311wmU&#x2F;veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "zennflare0908",
+          title: "git 備忘錄",
+          url: "https://benson0418.github.io/2025/09/06/git_notes_traditional_chinese/",
+          excerpt: "",
+          description: "",
+          stripContent: "Git語法速查備忘錄基本配置1234567891011121314# 設定使用者資訊git config --global user.name &amp;quot;使用者名稱&amp;quot;git config --global user.email &amp;quot;email@example.com&amp;quot;# 檢視設定git config --global user.namegit config --global user.email# 設定別名alias git-log=&amp;#x27;git log --",
+          date: "Sat Sep 06 2025 23:00:00 GMT+0800",
+          updated: "Sat Sep 06 2025 23:25:20 GMT+0800",
+          cover: "/../images/gitLogo.png",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous"></script>
+
+  
+    <script>
+      var isMobile = window.matchMedia('(max-width: 959px)').matches;
+      if (isMobile) {
+      const aplayer = _$('#aplayer');
+        if (aplayer) {
+          const aside = aplayer.parentNode;
+          if (aside?.tagName === 'ASIDE') {
+            aplayer.removeAttribute('data-aos');
+            aside.removeChild(aplayer);
+            document.body.appendChild(aplayer);
+          }
+        }
+      }
+      const ap = new APlayer({
+        theme: "var(--color-link)",
+        container: document.getElementById('aplayer'),
+        audio: [{"name":"神々が恋した幻想郷　東方風神録 3面テーマ","artist":"アルペッジョが紡ぐ幻想の調べ","url":"/music/【アルペッジョが紡ぐ幻想の調べ】神々が恋した幻想郷　東方風神録 3面テーマ　【東方中級ピアノアレンジ】.mp3","cover":"/images/cover.jpg"},{"name":"鈴木このみ - This Game","artist":"鈴木このみ","url":"/music/【ピアノ】鈴木このみ - This Game｜遊戲人生-No Game No Life OP.mp3","cover":"/images/cover1.jpg"},{"name":"残酷な天使のテーゼ","artist":"高橋洋子","url":"/music/A Cruel Angel's Thesis - Neon Genesis Evangelion OP [Piano].mp3","cover":"/images/cover2.jpg"}] || [],
+        fixed: isMobile ? true : (false || false),
+        autoplay: false || false,
+        loop: 'none' || 'all',
+        order: 'random' || 'list',
+        preload: 'auto' || 'auto',
+        volume: 0.3 || 0.7,
+        mutex: true || true,
+        listFolded: false || false,
+        lrcType: 0 || 0,
+      });
+    </script>
+  
+
+
+
+
+
+    
+  </body>
+  </html>
+
