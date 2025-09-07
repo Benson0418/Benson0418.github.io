@@ -1,0 +1,1507 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-TW"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本部落格所有文章除特別聲明外，均採用 BY-NC-SA 授權協議。轉載請註明出處！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://benson0418.github.io';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    WSL筆記 |
+    
+    N95&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CJetBrains%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CJetBrains%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="WSL&#x2F;Linux 常用命令初始設定Root 密碼設定12wsl -d Ubuntu -u rootpasswd n95linux  基本命令格式1command [-options] [parameter] 命令 選項 參數  檔案與目錄操作ls - 列出檔案和目錄1ls [-a -l -h][路徑]  -a 列出隱藏檔案 -h 顯示檔案大小單位 ls -la 列表顯示隱藏檔案  快捷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WSL筆記">
+<meta property="og:url" content="https://benson0418.github.io/2025/09/07/myWSLnote/index.html">
+<meta property="og:site_name" content="N95&#39;s Blog">
+<meta property="og:description" content="WSL&#x2F;Linux 常用命令初始設定Root 密碼設定12wsl -d Ubuntu -u rootpasswd n95linux  基本命令格式1command [-options] [parameter] 命令 選項 參數  檔案與目錄操作ls - 列出檔案和目錄1ls [-a -l -h][路徑]  -a 列出隱藏檔案 -h 顯示檔案大小單位 ls -la 列表顯示隱藏檔案  快捷">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-07T11:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-07T10:41:29.696Z">
+<meta property="article:author" content="zennflare0908">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="WSL">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="N95's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU&#x2F;voDBY5XE2lVh" crossorigin="anonymous">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈禱中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首頁</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">關於</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友鏈</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 訂閱" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">正體中文</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-TW" class="selected">正體中文</li>
+          
+            <li data-value="en" >English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-TW'] = '/2025/09/07/myWSLnote/';
+            
+              langMap['en'] = '/en/2025/09/07/myWSLnote/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="/../images/wsl2.jpeg" alt="WSL筆記">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <span id="logo">
+            <h1 data-aos="slide-up">WSL筆記</h1>
+          </span>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WSL-Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">WSL&#x2F;Linux 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">初始設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Root-%E5%AF%86%E7%A2%BC%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">Root 密碼設定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">基本命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E8%88%87%E7%9B%AE%E9%8C%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">檔案與目錄操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-%E5%88%97%E5%87%BA%E6%AA%94%E6%A1%88%E5%92%8C%E7%9B%AE%E9%8C%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">ls - 列出檔案和目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd-%E8%AE%8A%E6%9B%B4%E7%9B%AE%E9%8C%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">cd - 變更目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir-%E5%BB%BA%E7%AB%8B%E7%9B%AE%E9%8C%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">mkdir - 建立目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch-%E5%BB%BA%E7%AB%8B%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.4.</span> <span class="toc-text">touch - 建立檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E6%AA%A2%E8%A6%96"><span class="toc-number">1.3.5.</span> <span class="toc-text">檔案檢視</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-%E8%A4%87%E8%A3%BD%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.6.</span> <span class="toc-text">cp - 複製檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv-%E7%A7%BB%E5%8B%95%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.7.</span> <span class="toc-text">mv - 移動檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm-%E5%88%AA%E9%99%A4%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.8.</span> <span class="toc-text">rm - 刪除檔案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E6%90%9C%E5%B0%8B%E8%88%87%E6%9F%A5%E6%89%BE"><span class="toc-number">1.4.</span> <span class="toc-text">檔案搜尋與查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#which-%E5%B0%8B%E6%89%BE%E7%A8%8B%E5%BC%8F%E6%AA%94%E6%A1%88%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.4.1.</span> <span class="toc-text">which - 尋找程式檔案位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find-%E6%90%9C%E5%B0%8B%E6%AA%94%E6%A1%88"><span class="toc-number">1.4.2.</span> <span class="toc-text">find - 搜尋檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-%E9%97%9C%E9%8D%B5%E5%AD%97%E9%81%8E%E6%BF%BE"><span class="toc-number">1.4.3.</span> <span class="toc-text">grep - 關鍵字過濾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wc-%E7%B5%B1%E8%A8%88%E6%AA%94%E6%A1%88%E8%B3%87%E8%A8%8A"><span class="toc-number">1.4.4.</span> <span class="toc-text">wc - 統計檔案資訊</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E9%9A%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">進階操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E7%AC%A6"><span class="toc-number">1.5.1.</span> <span class="toc-text">管道符 |</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E8%BC%B8%E5%87%BA%E5%85%A7%E5%AE%B9"><span class="toc-number">1.5.2.</span> <span class="toc-text">echo - 輸出內容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%95%E8%99%9F"><span class="toc-number">1.5.3.</span> <span class="toc-text">反引號  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E7%AC%A6"><span class="toc-number">1.5.4.</span> <span class="toc-text">重定向符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail-%E6%AA%A2%E8%A6%96%E6%AA%94%E6%A1%88%E5%B0%BE%E9%83%A8"><span class="toc-number">1.5.5.</span> <span class="toc-text">tail - 檢視檔案尾部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-%E6%8F%90%E5%8D%87%E6%AC%8A%E9%99%90"><span class="toc-number">1.5.6.</span> <span class="toc-text">sudo - 提升權限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%80%85%E8%88%87%E7%BE%A4%E7%B5%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.6.</span> <span class="toc-text">使用者與群組管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%A4%E7%B5%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.6.1.</span> <span class="toc-text">群組管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%80%85%E7%AE%A1%E7%90%86"><span class="toc-number">1.6.2.</span> <span class="toc-text">使用者管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E6%AC%8A%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.7.</span> <span class="toc-text">檔案權限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%8A%E9%99%90%E8%B3%87%E8%A8%8A%E8%A7%A3%E8%AE%80"><span class="toc-number">1.7.1.</span> <span class="toc-text">權限資訊解讀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod-%E4%BF%AE%E6%94%B9%E6%AC%8A%E9%99%90"><span class="toc-number">1.7.2.</span> <span class="toc-text">chmod - 修改權限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chown-%E4%BF%AE%E6%94%B9%E6%93%81%E6%9C%89%E8%80%85"><span class="toc-number">1.7.3.</span> <span class="toc-text">chown - 修改擁有者</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%AD%B7%E5%8F%B2%E8%88%87%E5%BF%AB%E6%8D%B7%E9%8D%B5"><span class="toc-number">1.8.</span> <span class="toc-text">命令歷史與快捷鍵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%AD%B7%E5%8F%B2"><span class="toc-number">1.8.1.</span> <span class="toc-text">命令歷史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%8D%B5"><span class="toc-number">1.8.2.</span> <span class="toc-text">快捷鍵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">1.9.</span> <span class="toc-text">套件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">1.9.1.</span> <span class="toc-text">apt - 套件管理工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E6%9C%8D%E5%8B%99%E7%AE%A1%E7%90%86"><span class="toc-number">1.10.</span> <span class="toc-text">系統服務管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#systemctl-%E6%9C%8D%E5%8B%99%E6%8E%A7%E5%88%B6"><span class="toc-number">1.10.1.</span> <span class="toc-text">systemctl - 服務控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%A3%E7%B5%90%E8%88%87%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">1.11.</span> <span class="toc-text">連結與快捷方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ln-%E5%BB%BA%E7%AB%8B%E9%80%A3%E7%B5%90"><span class="toc-number">1.11.1.</span> <span class="toc-text">ln - 建立連結</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E8%88%87%E6%99%82%E9%96%93"><span class="toc-number">1.12.</span> <span class="toc-text">日期與時間</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#date-%E6%97%A5%E6%9C%9F%E9%A1%AF%E7%A4%BA%E8%88%87%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.12.1.</span> <span class="toc-text">date - 日期顯示與格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%99%82%E5%8D%80"><span class="toc-number">1.12.2.</span> <span class="toc-text">修改時區</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%82%E9%96%93%E5%90%8C%E6%AD%A5"><span class="toc-number">1.12.3.</span> <span class="toc-text">時間同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B6%B2%E8%B7%AF%E7%9B%B8%E9%97%9C"><span class="toc-number">1.13.</span> <span class="toc-text">網路相關</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E4%BD%8D%E5%9D%80%E6%AA%A2%E8%A6%96"><span class="toc-number">1.13.1.</span> <span class="toc-text">IP位址檢視</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%A9%9F%E5%90%8D"><span class="toc-number">1.13.2.</span> <span class="toc-text">修改主機名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping-%E7%B6%B2%E8%B7%AF%E9%80%A3%E9%80%9A%E6%80%A7%E6%B8%AC%E8%A9%A6"><span class="toc-number">1.13.3.</span> <span class="toc-text">ping - 網路連通性測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wget-%E6%AA%94%E6%A1%88%E4%B8%8B%E8%BC%89"><span class="toc-number">1.13.4.</span> <span class="toc-text">wget - 檔案下載</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl-HTTP%E8%AB%8B%E6%B1%82%E5%B7%A5%E5%85%B7"><span class="toc-number">1.13.5.</span> <span class="toc-text">curl - HTTP請求工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap-%E5%9F%A0%E5%8F%A3%E6%8E%83%E6%8F%8F"><span class="toc-number">1.13.6.</span> <span class="toc-text">nmap - 埠口掃描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat-%E7%B6%B2%E8%B7%AF%E7%8B%80%E6%85%8B%E6%AA%A2%E8%A6%96"><span class="toc-number">1.13.7.</span> <span class="toc-text">netstat - 網路狀態檢視</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%A0%E5%8F%A3%E7%AF%84%E5%9C%8D%E8%AA%AA%E6%98%8E"><span class="toc-number">1.14.</span> <span class="toc-text">埠口範圍說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86"><span class="toc-number">1.15.</span> <span class="toc-text">程序管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ps-%E7%A8%8B%E5%BA%8F%E6%AA%A2%E8%A6%96"><span class="toc-number">1.15.1.</span> <span class="toc-text">ps - 程序檢視</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill-%E9%97%9C%E9%96%89%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.15.2.</span> <span class="toc-text">kill - 關閉程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top-%E7%B3%BB%E7%B5%B1%E7%9B%A3%E6%8E%A7"><span class="toc-number">1.15.3.</span> <span class="toc-text">top - 系統監控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E7%9B%A3%E6%8E%A7"><span class="toc-number">1.16.</span> <span class="toc-text">系統監控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df-%E7%A1%AC%E7%A2%9F%E4%BD%BF%E7%94%A8%E6%83%85%E6%B3%81"><span class="toc-number">1.16.1.</span> <span class="toc-text">df - 硬碟使用情況</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iostat-I-O%E7%B5%B1%E8%A8%88%EF%BC%88%E9%9C%80%E5%AE%89%E8%A3%9Dsysstat%EF%BC%89"><span class="toc-number">1.16.2.</span> <span class="toc-text">iostat - I&#x2F;O統計（需安裝sysstat）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sar-%E7%B3%BB%E7%B5%B1%E6%B4%BB%E5%8B%95%E5%A0%B1%E5%91%8A"><span class="toc-number">1.16.3.</span> <span class="toc-text">sar - 系統活動報告</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.</span> <span class="toc-text">環境變數</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#env-%E6%AA%A2%E8%A6%96%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.1.</span> <span class="toc-text">env - 檢視環境變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.2.</span> <span class="toc-text">使用環境變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#export-%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.3.</span> <span class="toc-text">export - 設定環境變數</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.18.</span> <span class="toc-text">檔案傳輸工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lrzsz-%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.18.1.</span> <span class="toc-text">lrzsz - 檔案傳輸工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E5%A3%93%E7%B8%AE%E8%88%87%E8%A7%A3%E5%A3%93"><span class="toc-number">1.19.</span> <span class="toc-text">檔案壓縮與解壓</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-%E6%89%93%E5%8C%85%E5%A3%93%E7%B8%AE"><span class="toc-number">1.19.1.</span> <span class="toc-text">tar - 打包壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip-unzip-ZIP%E5%A3%93%E7%B8%AE"><span class="toc-number">1.19.2.</span> <span class="toc-text">zip&#x2F;unzip - ZIP壓縮</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:dges030712@gmail.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Benson0418 itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-telegram sidebar-social-icon">
+      <a href=https://t.me/zodiac2712 itemprop="url" target="_blank" aria-label="telegram" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-discord sidebar-social-icon">
+      <a href=https://discord.gg/FgQpzTNjQs itemprop="url" target="_blank" aria-label="discord" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-myWSLnote" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-09-07T11:00:00.000Z" itemprop="datePublished">2025-09-07</time>
+    <time style="display: none;" id="post-update-time">2025-09-07</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WSL/" data-aos="zoom-in">WSL</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="WSL-Linux-常用命令"><a href="#WSL-Linux-常用命令" class="headerlink" title="WSL&#x2F;Linux 常用命令"></a>WSL&#x2F;Linux 常用命令</h1><h2 id="初始設定"><a href="#初始設定" class="headerlink" title="初始設定"></a>初始設定</h2><h3 id="Root-密碼設定"><a href="#Root-密碼設定" class="headerlink" title="Root 密碼設定"></a>Root 密碼設定</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wsl -d Ubuntu -u root</span><br><span class="line">passwd n95linux</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本命令格式"><a href="#基本命令格式" class="headerlink" title="基本命令格式"></a>基本命令格式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command [-options] [parameter] 命令 選項 參數</span><br></pre></td></tr></table></figure>
+
+<h2 id="檔案與目錄操作"><a href="#檔案與目錄操作" class="headerlink" title="檔案與目錄操作"></a>檔案與目錄操作</h2><h3 id="ls-列出檔案和目錄"><a href="#ls-列出檔案和目錄" class="headerlink" title="ls - 列出檔案和目錄"></a>ls - 列出檔案和目錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> [-a -l -h][路徑]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-a</code> 列出隱藏檔案</li>
+<li><code>-h</code> 顯示檔案大小單位</li>
+<li><code>ls -la</code> 列表顯示隱藏檔案</li>
+</ul>
+<p><strong>快捷鍵：</strong></p>
+<ul>
+<li><code>&lt;Ctrl+L&gt;</code> 清除畫面</li>
+<li><code>&lt;Ctrl+C&gt;</code> 終止</li>
+</ul>
+<h3 id="cd-變更目錄"><a href="#cd-變更目錄" class="headerlink" title="cd - 變更目錄"></a>cd - 變更目錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [路徑]  <span class="comment"># Change Directory</span></span><br><span class="line"><span class="built_in">pwd</span>        <span class="comment"># Print Work Directory</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>特殊目錄：</strong></p>
+<ul>
+<li><code>.</code> 當前目錄</li>
+<li><code>..</code> 上級目錄</li>
+<li><code>~</code> HOME目錄</li>
+</ul>
+<h3 id="mkdir-建立目錄"><a href="#mkdir-建立目錄" class="headerlink" title="mkdir - 建立目錄"></a>mkdir - 建立目錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> [-p] 路徑  <span class="comment"># Make Directory</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-p</code> 表示多層級目錄建立</li>
+</ul>
+<h3 id="touch-建立檔案"><a href="#touch-建立檔案" class="headerlink" title="touch - 建立檔案"></a>touch - 建立檔案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> 路徑/test.txt  <span class="comment"># 建立檔案</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="檔案檢視"><a href="#檔案檢視" class="headerlink" title="檔案檢視"></a>檔案檢視</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> 路徑      <span class="comment"># 檢視檔案內容，一次全部輸出</span></span><br><span class="line">more 路徑     <span class="comment"># 檢視檔案內容，分頁輸出</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>more 操作：</strong></p>
+<ul>
+<li>空格鍵：下翻頁</li>
+<li><code>b</code>：上翻頁</li>
+<li><code>q</code>：退出</li>
+</ul>
+<h3 id="cp-複製檔案"><a href="#cp-複製檔案" class="headerlink" title="cp - 複製檔案"></a>cp - 複製檔案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> [-r] 參數1 參數2  <span class="comment"># Copy</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-r</code> 用於複製資料夾（遞迴複製）</li>
+</ul>
+<h3 id="mv-移動檔案"><a href="#mv-移動檔案" class="headerlink" title="mv - 移動檔案"></a>mv - 移動檔案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> 參數1 參數2  <span class="comment"># Move，移動檔案1到2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="rm-刪除檔案"><a href="#rm-刪除檔案" class="headerlink" title="rm - 刪除檔案"></a>rm - 刪除檔案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> [-r -f] 參數1 參數2 ...  <span class="comment"># 刪除檔案</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-r</code> 刪除資料夾</li>
+<li><code>-f</code> 強制刪除</li>
+</ul>
+<p><strong>萬用字元：</strong></p>
+<ul>
+<li><code>test*</code> 匹配任意以test開頭的內容</li>
+<li><code>*test*</code> 匹配任何包含test的內容</li>
+</ul>
+<h2 id="檔案搜尋與查找"><a href="#檔案搜尋與查找" class="headerlink" title="檔案搜尋與查找"></a>檔案搜尋與查找</h2><h3 id="which-尋找程式檔案位置"><a href="#which-尋找程式檔案位置" class="headerlink" title="which - 尋找程式檔案位置"></a>which - 尋找程式檔案位置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> 要查找的命令</span><br></pre></td></tr></table></figure>
+
+<h3 id="find-搜尋檔案"><a href="#find-搜尋檔案" class="headerlink" title="find - 搜尋檔案"></a>find - 搜尋檔案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find 起始路徑 -name <span class="string">&quot;被查找檔案名&quot;</span></span><br><span class="line">find 起始路徑 -size &#123;+/-&#125;&#123;kMG&#125;  <span class="comment"># 依檔案大小查找</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="grep-關鍵字過濾"><a href="#grep-關鍵字過濾" class="headerlink" title="grep - 關鍵字過濾"></a>grep - 關鍵字過濾</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [-n] 關鍵字 檔案路徑</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-n</code> 在結果中顯示匹配行的行號</li>
+<li>關鍵字含空格或特殊符號時建議用雙引號包圍</li>
+</ul>
+<h3 id="wc-統計檔案資訊"><a href="#wc-統計檔案資訊" class="headerlink" title="wc - 統計檔案資訊"></a>wc - 統計檔案資訊</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">wc</span> [-c -m -l -w] 檔案路徑</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-c</code> 統計byte數量</li>
+<li><code>-m</code> 統計字元數量</li>
+<li><code>-l</code> 統計行數</li>
+<li><code>-w</code> 統計單字數</li>
+</ul>
+<h2 id="進階操作"><a href="#進階操作" class="headerlink" title="進階操作"></a>進階操作</h2><h3 id="管道符"><a href="#管道符" class="headerlink" title="管道符 |"></a>管道符 |</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> Desktop | grep <span class="built_in">test</span>  <span class="comment"># 左邊結果作為右邊輸入</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="echo-輸出內容"><a href="#echo-輸出內容" class="headerlink" title="echo - 輸出內容"></a>echo - 輸出內容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;內容&quot;</span>  <span class="comment"># 在命令列輸出指定內容，建議用雙引號包圍</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="反引號"><a href="#反引號" class="headerlink" title="反引號  "></a>反引號 <code> </code></h3><p>被反引號包圍的內容會被作為命令執行，而非普通字元</p>
+<h3 id="重定向符"><a href="#重定向符" class="headerlink" title="重定向符"></a>重定向符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;   <span class="comment"># 將左側命令結果，覆蓋寫入到右側指定檔案中</span></span><br><span class="line">&gt;&gt;  <span class="comment"># 將左側命令結果，追加寫入到右側指定檔案中</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello, world&quot;</span> &gt;&gt; new.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="tail-檢視檔案尾部"><a href="#tail-檢視檔案尾部" class="headerlink" title="tail - 檢視檔案尾部"></a>tail - 檢視檔案尾部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> [-f -num] linux路徑</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-f</code> 持續追蹤</li>
+<li><code>-num</code> 檢視尾部多少行，預設10行</li>
+</ul>
+<p>範例：<code>tail -5 new.txt</code></p>
+<h3 id="sudo-提升權限"><a href="#sudo-提升權限" class="headerlink" title="sudo - 提升權限"></a>sudo - 提升權限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> 其他命令  <span class="comment"># 為此條命令賦予root授權</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用者與群組管理"><a href="#使用者與群組管理" class="headerlink" title="使用者與群組管理"></a>使用者與群組管理</h2><p><strong>以下命令需要root權限</strong></p>
+<h3 id="群組管理"><a href="#群組管理" class="headerlink" title="群組管理"></a>群組管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd 使用者群組名    <span class="comment"># 建立使用者群組</span></span><br><span class="line">groupdel 使用者群組名    <span class="comment"># 刪除使用者群組</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用者管理"><a href="#使用者管理" class="headerlink" title="使用者管理"></a>使用者管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd [-g -d] 使用者名</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-g</code> 指定使用者的群組，不指定則建立同名群組並自動加入</li>
+<li><code>-d</code> 指定使用者HOME路徑，預設在 <code>/home/使用者名</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel [-r] 使用者名    <span class="comment"># 刪除使用者</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-r</code> 刪除使用者的HOME目錄</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span> [使用者名]            <span class="comment"># 檢視使用者資訊，預設為自身</span></span><br><span class="line">usermod -aG 群組名 使用者名   <span class="comment"># 將指定使用者加入使用者群組</span></span><br><span class="line">getent passwd           <span class="comment"># 檢視使用者資訊</span></span><br><span class="line">getent group            <span class="comment"># 檢視使用者群組資訊</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="檔案權限管理"><a href="#檔案權限管理" class="headerlink" title="檔案權限管理"></a>檔案權限管理</h2><h3 id="權限資訊解讀"><a href="#權限資訊解讀" class="headerlink" title="權限資訊解讀"></a>權限資訊解讀</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[-或d或l][r或-,w或-,x或-][r或-,w或-,x或-][r或-,w或-,x或-]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一位：<code>-</code>表示檔案，<code>d</code>表示資料夾，<code>l</code>表示軟連結</li>
+<li>第二部分：所屬使用者權限</li>
+<li>第三部分：所屬群組權限</li>
+<li>第四部分：其他使用者權限</li>
+</ul>
+<p>範例：<code>drwxr-xr-x</code></p>
+<p><strong>權限意義：</strong></p>
+<ul>
+<li><code>r</code> 檔案：可檢視檔案內容；資料夾：可檢視資料夾內容（如ls命令）</li>
+<li><code>w</code> 檔案：可修改檔案；資料夾：可在資料夾內建立、刪除、重新命名等操作</li>
+<li><code>x</code> 檔案：可將檔案作為程式執行；資料夾：可變更工作目錄到此資料夾（cd進入）</li>
+</ul>
+<h3 id="chmod-修改權限"><a href="#chmod-修改權限" class="headerlink" title="chmod - 修改權限"></a>chmod - 修改權限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [-R] 權限 檔案或資料夾</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-R</code> 對資料夾全部內容套用相同操作</li>
+</ul>
+<p><strong>符號表示法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> u=rwx,g=rx,o=x hello.txt  <span class="comment"># 將檔案權限修改為rwxr-x--x</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>u</code>表示user</li>
+<li><code>g</code>表示group</li>
+<li><code>o</code>表示other</li>
+</ul>
+<p><strong>數字表示法：</strong></p>
+<ul>
+<li><code>r</code>記為4，<code>w</code>記為2，<code>x</code>記為1</li>
+<li><code>0</code>表示沒有任何權限</li>
+<li><code>5</code>表示有r和x權限（4+1）</li>
+<li><code>7</code>有全部權限（4+2+1）</li>
+</ul>
+<p>範例：<code>751</code>表示<code>rwx(7)r-x(5)--x(1)</code></p>
+<h3 id="chown-修改擁有者"><a href="#chown-修改擁有者" class="headerlink" title="chown - 修改擁有者"></a>chown - 修改擁有者</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> [-R] [使用者][:][使用者群組] 檔案或資料夾</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只適用於root使用者執行</li>
+<li><code>-R</code> 對資料夾全部內容套用相同規則</li>
+<li><code>:</code>用來分隔使用者和使用者群組</li>
+</ul>
+<h2 id="命令歷史與快捷鍵"><a href="#命令歷史與快捷鍵" class="headerlink" title="命令歷史與快捷鍵"></a>命令歷史與快捷鍵</h2><h3 id="命令歷史"><a href="#命令歷史" class="headerlink" title="命令歷史"></a>命令歷史</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span>                    <span class="comment"># 檢視歷史輸入，數字越大越近</span></span><br><span class="line"><span class="built_in">history</span> | grep ch          <span class="comment"># 搜尋歷史命令</span></span><br><span class="line">!                         <span class="comment"># 感嘆號，自動執行上一次匹配前綴的命令</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="快捷鍵"><a href="#快捷鍵" class="headerlink" title="快捷鍵"></a>快捷鍵</h3><ul>
+<li><code>&lt;Ctrl+D&gt;</code> 退出或登出</li>
+<li><code>&lt;Ctrl+R&gt;</code> 輸入內容匹配歷史命令</li>
+<li><code>&lt;Ctrl+A&gt;</code> 跳到開頭</li>
+<li><code>&lt;Ctrl+E&gt;</code> 跳到結尾</li>
+<li><code>&lt;Ctrl+左方向鍵&gt;</code> 向左跳一個單字</li>
+<li><code>&lt;Ctrl+右方向鍵&gt;</code> 向右跳一個單字</li>
+<li><code>&lt;Ctrl+L&gt;</code> 清空終端內容</li>
+</ul>
+<h2 id="套件管理"><a href="#套件管理" class="headerlink" title="套件管理"></a>套件管理</h2><h3 id="apt-套件管理工具"><a href="#apt-套件管理工具" class="headerlink" title="apt - 套件管理工具"></a>apt - 套件管理工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt [-y] [install | remove | search] 軟體名稱</span><br></pre></td></tr></table></figure>
+<p>需要root權限</p>
+<ul>
+<li><code>apt install wget</code> 安裝wget</li>
+<li><code>apt remove wget</code> 移除wget</li>
+<li><code>apt search wget</code> 搜尋wget</li>
+</ul>
+<h2 id="系統服務管理"><a href="#系統服務管理" class="headerlink" title="系統服務管理"></a>系統服務管理</h2><h3 id="systemctl-服務控制"><a href="#systemctl-服務控制" class="headerlink" title="systemctl - 服務控制"></a>systemctl - 服務控制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start | stop | status | <span class="built_in">enable</span> | <span class="built_in">disable</span> 服務名</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>start</code> 啟動</li>
+<li><code>stop</code> 關閉</li>
+<li><code>status</code> 檢視狀態</li>
+<li><code>enable</code> 開啟開機自啟</li>
+<li><code>disable</code> 關閉開機自啟</li>
+</ul>
+<h2 id="連結與快捷方式"><a href="#連結與快捷方式" class="headerlink" title="連結與快捷方式"></a>連結與快捷方式</h2><h3 id="ln-建立連結"><a href="#ln-建立連結" class="headerlink" title="ln - 建立連結"></a>ln - 建立連結</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s 參數1 參數2  <span class="comment"># 建立快捷方式（軟連結）</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-s</code> 建立軟連結</li>
+<li>參數1：被連結的檔案或資料夾</li>
+<li>參數2：要連結去的目的地</li>
+</ul>
+<h2 id="日期與時間"><a href="#日期與時間" class="headerlink" title="日期與時間"></a>日期與時間</h2><h3 id="date-日期顯示與格式化"><a href="#date-日期顯示與格式化" class="headerlink" title="date - 日期顯示與格式化"></a>date - 日期顯示與格式化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span> [-d] [+格式化字串]</span><br></pre></td></tr></table></figure>
+
+<p><strong>格式化字串：</strong></p>
+<ul>
+<li><code>%Y</code> 年</li>
+<li><code>%y</code> 年份後兩位數字</li>
+<li><code>%m</code> 月份 (01-12)</li>
+<li><code>%d</code> 日 (01-31)</li>
+<li><code>%H</code> 小時 (00-23)</li>
+<li><code>%M</code> 分鐘 (00-59)</li>
+<li><code>%S</code> 秒 (00-59)</li>
+<li><code>%s</code> 自1970-01-01 00:00:00 UTC到現在的秒數（時間戳）</li>
+</ul>
+<p>範例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span> <span class="string">&quot;+%Y-%m-%d %H:%M:%S&quot;</span></span><br><span class="line"><span class="built_in">date</span> -d <span class="string">&quot;+1 day&quot;</span>  <span class="comment"># 明天的日期</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>日期計算單位：</strong></p>
+<ul>
+<li><code>year</code>年、<code>month</code>月、<code>day</code>天、<code>hour</code>小時、<code>minute</code>分鐘、<code>second</code>秒</li>
+</ul>
+<h3 id="修改時區"><a href="#修改時區" class="headerlink" title="修改時區"></a>修改時區</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> /etc/localtime /etc/localtime.bak</span><br><span class="line"><span class="built_in">ln</span> -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime</span><br></pre></td></tr></table></figure>
+
+<h3 id="時間同步"><a href="#時間同步" class="headerlink" title="時間同步"></a>時間同步</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install chrony</span><br><span class="line">systemctl status chrony</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> chrony</span><br></pre></td></tr></table></figure>
+
+<h2 id="網路相關"><a href="#網路相關" class="headerlink" title="網路相關"></a>網路相關</h2><h3 id="IP位址檢視"><a href="#IP位址檢視" class="headerlink" title="IP位址檢視"></a>IP位址檢視</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt -y install net-tools</span><br><span class="line">ifconfig  <span class="comment"># 檢視當前IP位址</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>特殊IP：</strong></p>
+<ul>
+<li><code>127.0.0.1</code> 指代本機</li>
+<li><code>0.0.0.0</code> 用於指代本機或在埠口中使用綁定來確定關係，或表示所有IP</li>
+</ul>
+<h3 id="修改主機名"><a href="#修改主機名" class="headerlink" title="修改主機名"></a>修改主機名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname myLinux</span><br><span class="line"><span class="comment"># 編輯 /etc/hosts</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ping-網路連通性測試"><a href="#ping-網路連通性測試" class="headerlink" title="ping - 網路連通性測試"></a>ping - 網路連通性測試</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping [-c num] ip或主機名</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-c</code> 檢查的次數，不使用-c表示無限次持續檢查</li>
+</ul>
+<h3 id="wget-檔案下載"><a href="#wget-檔案下載" class="headerlink" title="wget - 檔案下載"></a>wget - 檔案下載</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget [-b] url</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-b</code> 可選，後台下載，會將日誌寫入到當前工作目錄的wget-log檔案</li>
+</ul>
+<h3 id="curl-HTTP請求工具"><a href="#curl-HTTP請求工具" class="headerlink" title="curl - HTTP請求工具"></a>curl - HTTP請求工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl [-O] url</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-O</code> 用於下載檔案，當url是下載連結時，可以使用此選項儲存檔案</li>
+</ul>
+<h3 id="nmap-埠口掃描"><a href="#nmap-埠口掃描" class="headerlink" title="nmap - 埠口掃描"></a>nmap - 埠口掃描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">snap install nmap</span><br><span class="line">nmap 被檢視的IP位址  <span class="comment"># 檢視指定IP對外暴露的埠口</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="netstat-網路狀態檢視"><a href="#netstat-網路狀態檢視" class="headerlink" title="netstat - 網路狀態檢視"></a>netstat - 網路狀態檢視</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp | grep 埠口號</span><br></pre></td></tr></table></figure>
+
+<h2 id="埠口範圍說明"><a href="#埠口範圍說明" class="headerlink" title="埠口範圍說明"></a>埠口範圍說明</h2><ul>
+<li><strong>公認埠口</strong> 1~1023：用於系統內建或常用知名軟體綁定使用</li>
+<li><strong>註冊埠口</strong> 1024~49151：用於鬆散綁定使用（使用者自定義）</li>
+<li><strong>動態埠口</strong> 49152~65535：用於臨時使用（多用於出口）</li>
+</ul>
+<h2 id="程序管理"><a href="#程序管理" class="headerlink" title="程序管理"></a>程序管理</h2><h3 id="ps-程序檢視"><a href="#ps-程序檢視" class="headerlink" title="ps - 程序檢視"></a>ps - 程序檢視</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps [-e -f]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-e</code> 顯示全部的程序</li>
+<li><code>-f</code> 以完全格式化的形式展示資訊（展示全部資訊）</li>
+</ul>
+<h3 id="kill-關閉程序"><a href="#kill-關閉程序" class="headerlink" title="kill - 關閉程序"></a>kill - 關閉程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> [-9] 程序ID</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-9</code> 表示強制關閉程序</li>
+</ul>
+<h3 id="top-系統監控"><a href="#top-系統監控" class="headerlink" title="top - 系統監控"></a>top - 系統監控</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top [-p -d -c -n -b -i -u]</span><br></pre></td></tr></table></figure>
+<p>透過top命令檢視CPU、記憶體使用情況，預設每5秒重新整理一次</p>
+<p><strong>選項說明：</strong></p>
+<ul>
+<li><code>-p</code> 只顯示某個程序的資訊</li>
+<li><code>-d</code> 設定重新整理時間，預設5秒</li>
+<li><code>-c</code> 顯示產生程序的完整命令，預設是程序名</li>
+<li><code>-n</code> 指定重新整理次數，比如<code>top -n 3</code>，重新整理輸出3次後退出</li>
+<li><code>-b</code> 以非互動非全螢幕模式運行，以批次方式執行top</li>
+<li><code>-i</code> 不顯示閒置(idle)或殭屍(zombie)程序</li>
+<li><code>-u</code> 查找特定使用者啟動的程序</li>
+</ul>
+<p><strong>互動式操作（非-b選項啟動）：</strong></p>
+<ul>
+<li><code>h鍵</code>：顯示幫助畫面</li>
+<li><code>c鍵</code>：顯示產生程序的完整命令，等同於-c參數</li>
+<li><code>f鍵</code>：選擇需要展示的項目</li>
+<li><code>M鍵</code>：根據駐留記憶體大小(RES)排序</li>
+<li><code>P鍵</code>：根據CPU使用百分比大小進行排序</li>
+<li><code>T鍵</code>：根據時間&#x2F;累計時間進行排序</li>
+<li><code>E鍵</code>：切換頂部記憶體顯示單位</li>
+<li><code>e鍵</code>：切換程序記憶體顯示單位</li>
+<li><code>l鍵</code>：切換顯示平均負載和啟動時間資訊</li>
+<li><code>i鍵</code>：不顯示閒置或無用的程序，等同於-i參數</li>
+<li><code>t鍵</code>：切換顯示CPU狀態資訊</li>
+<li><code>m鍵</code>：切換顯示記憶體資訊</li>
+</ul>
+<h2 id="系統監控"><a href="#系統監控" class="headerlink" title="系統監控"></a>系統監控</h2><h3 id="df-硬碟使用情況"><a href="#df-硬碟使用情況" class="headerlink" title="df - 硬碟使用情況"></a>df - 硬碟使用情況</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> [-h]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-h</code> 以更加人性化的單位顯示</li>
+</ul>
+<h3 id="iostat-I-O統計（需安裝sysstat）"><a href="#iostat-I-O統計（需安裝sysstat）" class="headerlink" title="iostat - I&#x2F;O統計（需安裝sysstat）"></a>iostat - I&#x2F;O統計（需安裝sysstat）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install sysstat</span><br><span class="line">iostat [-x] [num1] [num2]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-x</code> 顯示更多資訊</li>
+<li><code>num1</code> 重新整理間隔</li>
+<li><code>num2</code> 重新整理幾次</li>
+</ul>
+<h3 id="sar-系統活動報告"><a href="#sar-系統活動報告" class="headerlink" title="sar - 系統活動報告"></a>sar - 系統活動報告</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sar -n DEV num1 num2</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-n</code> 檢視網路，DEV表示檢視網路介面</li>
+<li><code>num1</code> 重新整理間隔（不填就檢視一次結束）</li>
+<li><code>num2</code> 檢視次數（不填無限次數）</li>
+</ul>
+<h2 id="環境變數"><a href="#環境變數" class="headerlink" title="環境變數"></a>環境變數</h2><h3 id="env-檢視環境變數"><a href="#env-檢視環境變數" class="headerlink" title="env - 檢視環境變數"></a>env - 檢視環境變數</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span>  <span class="comment"># 檢視系統所有環境變數</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用環境變數"><a href="#使用環境變數" class="headerlink" title="使用環境變數"></a>使用環境變數</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$PATH</span>        <span class="comment"># 使用$符號</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;PATH&#125;</span>ABC   <span class="comment"># 或使用大括號包圍</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="export-設定環境變數"><a href="#export-設定環境變數" class="headerlink" title="export - 設定環境變數"></a>export - 設定環境變數</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> 變數名=變數值</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/root/myenv  <span class="comment"># 臨時記錄變數</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>永久設定：</strong></p>
+<ul>
+<li>針對當前使用者生效：配置在 <code>~/.bashrc</code> 檔案中</li>
+<li>針對所有使用者生效：配置在 <code>/etc/profile</code> 檔案中</li>
+</ul>
+<h2 id="檔案傳輸工具"><a href="#檔案傳輸工具" class="headerlink" title="檔案傳輸工具"></a>檔案傳輸工具</h2><h3 id="lrzsz-檔案傳輸工具"><a href="#lrzsz-檔案傳輸工具" class="headerlink" title="lrzsz - 檔案傳輸工具"></a>lrzsz - 檔案傳輸工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install lrzsz</span><br></pre></td></tr></table></figure>
+
+<h2 id="檔案壓縮與解壓"><a href="#檔案壓縮與解壓" class="headerlink" title="檔案壓縮與解壓"></a>檔案壓縮與解壓</h2><h3 id="tar-打包壓縮"><a href="#tar-打包壓縮" class="headerlink" title="tar - 打包壓縮"></a>tar - 打包壓縮</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar [-c -v -x -f -z -C] 參數1 參數2 參數3 ...參數N</span><br></pre></td></tr></table></figure>
+
+<p><strong>選項說明：</strong></p>
+<ul>
+<li><code>-c</code> 建立壓縮檔案</li>
+<li><code>-v</code> 顯示壓縮、解壓過程，用於檢視進度</li>
+<li><code>-x</code> 解壓模式</li>
+<li><code>-f</code> 要建立的檔案，或要解壓的檔案，-f選項必須在所有選項中位置處於最後一個</li>
+<li><code>-z</code> gzip模式，不使用-z就是普通的tarball模式</li>
+<li><code>-C</code> 選擇解壓目的地，用於解壓模式</li>
+</ul>
+<p>範例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf test.tar.gz -C ./desktop2      <span class="comment"># 解壓到指定目錄</span></span><br><span class="line">tar -zcvf test.tar.gz mynv test.tar     <span class="comment"># 壓縮檔案</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="zip-unzip-ZIP壓縮"><a href="#zip-unzip-ZIP壓縮" class="headerlink" title="zip&#x2F;unzip - ZIP壓縮"></a>zip&#x2F;unzip - ZIP壓縮</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 壓縮</span></span><br><span class="line">zip [-r] 參數1 參數2...參數N</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-r</code> 包含資料夾時需要帶</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zip -r /home/user/backup/test.zip desktop desktop2 desktop3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解壓</span></span><br><span class="line">unzip [-d] 參數</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-d</code> 表示指定解壓去的位置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip test.zip -d ./desktop3</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/WSL/" rel="tag">WSL</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="/../images/gitLogo.png" data-sizes="auto" alt="git 備忘錄" class="lazyload">
+      
+      <a href="/2025/09/06/git_notes_traditional_chinese/"></a>
+      <div class="article-nav-caption">後一篇</div>
+      <h3 class="article-nav-title">
+        
+          git 備忘錄
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">說些什麼吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="giscus">
+              <span>giscus</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment giscus-comment" data-aos="fade-up"
+          id="giscus-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      zennflare0908
+    </div>
+    
+      <div>
+        基於&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        10k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:35
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">總訪問量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">總訪客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WSL-Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">WSL&#x2F;Linux 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">初始設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Root-%E5%AF%86%E7%A2%BC%E8%A8%AD%E5%AE%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">Root 密碼設定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">基本命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E8%88%87%E7%9B%AE%E9%8C%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">檔案與目錄操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-%E5%88%97%E5%87%BA%E6%AA%94%E6%A1%88%E5%92%8C%E7%9B%AE%E9%8C%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">ls - 列出檔案和目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd-%E8%AE%8A%E6%9B%B4%E7%9B%AE%E9%8C%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">cd - 變更目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir-%E5%BB%BA%E7%AB%8B%E7%9B%AE%E9%8C%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">mkdir - 建立目錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch-%E5%BB%BA%E7%AB%8B%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.4.</span> <span class="toc-text">touch - 建立檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E6%AA%A2%E8%A6%96"><span class="toc-number">1.3.5.</span> <span class="toc-text">檔案檢視</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-%E8%A4%87%E8%A3%BD%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.6.</span> <span class="toc-text">cp - 複製檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv-%E7%A7%BB%E5%8B%95%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.7.</span> <span class="toc-text">mv - 移動檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm-%E5%88%AA%E9%99%A4%E6%AA%94%E6%A1%88"><span class="toc-number">1.3.8.</span> <span class="toc-text">rm - 刪除檔案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E6%90%9C%E5%B0%8B%E8%88%87%E6%9F%A5%E6%89%BE"><span class="toc-number">1.4.</span> <span class="toc-text">檔案搜尋與查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#which-%E5%B0%8B%E6%89%BE%E7%A8%8B%E5%BC%8F%E6%AA%94%E6%A1%88%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.4.1.</span> <span class="toc-text">which - 尋找程式檔案位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find-%E6%90%9C%E5%B0%8B%E6%AA%94%E6%A1%88"><span class="toc-number">1.4.2.</span> <span class="toc-text">find - 搜尋檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-%E9%97%9C%E9%8D%B5%E5%AD%97%E9%81%8E%E6%BF%BE"><span class="toc-number">1.4.3.</span> <span class="toc-text">grep - 關鍵字過濾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wc-%E7%B5%B1%E8%A8%88%E6%AA%94%E6%A1%88%E8%B3%87%E8%A8%8A"><span class="toc-number">1.4.4.</span> <span class="toc-text">wc - 統計檔案資訊</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E9%9A%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">進階操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E7%AC%A6"><span class="toc-number">1.5.1.</span> <span class="toc-text">管道符 |</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E8%BC%B8%E5%87%BA%E5%85%A7%E5%AE%B9"><span class="toc-number">1.5.2.</span> <span class="toc-text">echo - 輸出內容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%95%E8%99%9F"><span class="toc-number">1.5.3.</span> <span class="toc-text">反引號  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E7%AC%A6"><span class="toc-number">1.5.4.</span> <span class="toc-text">重定向符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail-%E6%AA%A2%E8%A6%96%E6%AA%94%E6%A1%88%E5%B0%BE%E9%83%A8"><span class="toc-number">1.5.5.</span> <span class="toc-text">tail - 檢視檔案尾部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-%E6%8F%90%E5%8D%87%E6%AC%8A%E9%99%90"><span class="toc-number">1.5.6.</span> <span class="toc-text">sudo - 提升權限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%80%85%E8%88%87%E7%BE%A4%E7%B5%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.6.</span> <span class="toc-text">使用者與群組管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%A4%E7%B5%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.6.1.</span> <span class="toc-text">群組管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%80%85%E7%AE%A1%E7%90%86"><span class="toc-number">1.6.2.</span> <span class="toc-text">使用者管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E6%AC%8A%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.7.</span> <span class="toc-text">檔案權限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%8A%E9%99%90%E8%B3%87%E8%A8%8A%E8%A7%A3%E8%AE%80"><span class="toc-number">1.7.1.</span> <span class="toc-text">權限資訊解讀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod-%E4%BF%AE%E6%94%B9%E6%AC%8A%E9%99%90"><span class="toc-number">1.7.2.</span> <span class="toc-text">chmod - 修改權限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chown-%E4%BF%AE%E6%94%B9%E6%93%81%E6%9C%89%E8%80%85"><span class="toc-number">1.7.3.</span> <span class="toc-text">chown - 修改擁有者</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%AD%B7%E5%8F%B2%E8%88%87%E5%BF%AB%E6%8D%B7%E9%8D%B5"><span class="toc-number">1.8.</span> <span class="toc-text">命令歷史與快捷鍵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%AD%B7%E5%8F%B2"><span class="toc-number">1.8.1.</span> <span class="toc-text">命令歷史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%8D%B5"><span class="toc-number">1.8.2.</span> <span class="toc-text">快捷鍵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">1.9.</span> <span class="toc-text">套件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">1.9.1.</span> <span class="toc-text">apt - 套件管理工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E6%9C%8D%E5%8B%99%E7%AE%A1%E7%90%86"><span class="toc-number">1.10.</span> <span class="toc-text">系統服務管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#systemctl-%E6%9C%8D%E5%8B%99%E6%8E%A7%E5%88%B6"><span class="toc-number">1.10.1.</span> <span class="toc-text">systemctl - 服務控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%A3%E7%B5%90%E8%88%87%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">1.11.</span> <span class="toc-text">連結與快捷方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ln-%E5%BB%BA%E7%AB%8B%E9%80%A3%E7%B5%90"><span class="toc-number">1.11.1.</span> <span class="toc-text">ln - 建立連結</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E8%88%87%E6%99%82%E9%96%93"><span class="toc-number">1.12.</span> <span class="toc-text">日期與時間</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#date-%E6%97%A5%E6%9C%9F%E9%A1%AF%E7%A4%BA%E8%88%87%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.12.1.</span> <span class="toc-text">date - 日期顯示與格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%99%82%E5%8D%80"><span class="toc-number">1.12.2.</span> <span class="toc-text">修改時區</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%82%E9%96%93%E5%90%8C%E6%AD%A5"><span class="toc-number">1.12.3.</span> <span class="toc-text">時間同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B6%B2%E8%B7%AF%E7%9B%B8%E9%97%9C"><span class="toc-number">1.13.</span> <span class="toc-text">網路相關</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E4%BD%8D%E5%9D%80%E6%AA%A2%E8%A6%96"><span class="toc-number">1.13.1.</span> <span class="toc-text">IP位址檢視</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%A9%9F%E5%90%8D"><span class="toc-number">1.13.2.</span> <span class="toc-text">修改主機名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping-%E7%B6%B2%E8%B7%AF%E9%80%A3%E9%80%9A%E6%80%A7%E6%B8%AC%E8%A9%A6"><span class="toc-number">1.13.3.</span> <span class="toc-text">ping - 網路連通性測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wget-%E6%AA%94%E6%A1%88%E4%B8%8B%E8%BC%89"><span class="toc-number">1.13.4.</span> <span class="toc-text">wget - 檔案下載</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curl-HTTP%E8%AB%8B%E6%B1%82%E5%B7%A5%E5%85%B7"><span class="toc-number">1.13.5.</span> <span class="toc-text">curl - HTTP請求工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nmap-%E5%9F%A0%E5%8F%A3%E6%8E%83%E6%8F%8F"><span class="toc-number">1.13.6.</span> <span class="toc-text">nmap - 埠口掃描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat-%E7%B6%B2%E8%B7%AF%E7%8B%80%E6%85%8B%E6%AA%A2%E8%A6%96"><span class="toc-number">1.13.7.</span> <span class="toc-text">netstat - 網路狀態檢視</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%A0%E5%8F%A3%E7%AF%84%E5%9C%8D%E8%AA%AA%E6%98%8E"><span class="toc-number">1.14.</span> <span class="toc-text">埠口範圍說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86"><span class="toc-number">1.15.</span> <span class="toc-text">程序管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ps-%E7%A8%8B%E5%BA%8F%E6%AA%A2%E8%A6%96"><span class="toc-number">1.15.1.</span> <span class="toc-text">ps - 程序檢視</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill-%E9%97%9C%E9%96%89%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.15.2.</span> <span class="toc-text">kill - 關閉程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top-%E7%B3%BB%E7%B5%B1%E7%9B%A3%E6%8E%A7"><span class="toc-number">1.15.3.</span> <span class="toc-text">top - 系統監控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E7%9B%A3%E6%8E%A7"><span class="toc-number">1.16.</span> <span class="toc-text">系統監控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df-%E7%A1%AC%E7%A2%9F%E4%BD%BF%E7%94%A8%E6%83%85%E6%B3%81"><span class="toc-number">1.16.1.</span> <span class="toc-text">df - 硬碟使用情況</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iostat-I-O%E7%B5%B1%E8%A8%88%EF%BC%88%E9%9C%80%E5%AE%89%E8%A3%9Dsysstat%EF%BC%89"><span class="toc-number">1.16.2.</span> <span class="toc-text">iostat - I&#x2F;O統計（需安裝sysstat）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sar-%E7%B3%BB%E7%B5%B1%E6%B4%BB%E5%8B%95%E5%A0%B1%E5%91%8A"><span class="toc-number">1.16.3.</span> <span class="toc-text">sar - 系統活動報告</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.</span> <span class="toc-text">環境變數</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#env-%E6%AA%A2%E8%A6%96%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.1.</span> <span class="toc-text">env - 檢視環境變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.2.</span> <span class="toc-text">使用環境變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#export-%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="toc-number">1.17.3.</span> <span class="toc-text">export - 設定環境變數</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.18.</span> <span class="toc-text">檔案傳輸工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lrzsz-%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.18.1.</span> <span class="toc-text">lrzsz - 檔案傳輸工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E5%A3%93%E7%B8%AE%E8%88%87%E8%A7%A3%E5%A3%93"><span class="toc-number">1.19.</span> <span class="toc-text">檔案壓縮與解壓</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-%E6%89%93%E5%8C%85%E5%A3%93%E7%B8%AE"><span class="toc-number">1.19.1.</span> <span class="toc-text">tar - 打包壓縮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip-unzip-ZIP%E5%A3%93%E7%B8%AE"><span class="toc-number">1.19.2.</span> <span class="toc-text">zip&#x2F;unzip - ZIP壓縮</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="zennflare0908" class="lazyload">
+  <div class="sidebar-author-name">zennflare0908</div>
+  <div class="sidebar-description">昨日已逝，明日尚未來臨，唯有今天屬於我們</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-email sidebar-social-icon">
+      <a href=mailto:dges030712@gmail.com itemprop="url" target="_blank" aria-label="email" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Benson0418 itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-telegram sidebar-social-icon">
+      <a href=https://t.me/zodiac2712 itemprop="url" target="_blank" aria-label="telegram" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-discord sidebar-social-icon">
+      <a href=https://discord.gg/FgQpzTNjQs itemprop="url" target="_blank" aria-label="discord" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js" integrity="sha384-vLev0II0HKFaxkcm+&#x2F;7kX5IGwVFBASkGchU311wmU&#x2F;veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "zennflare0908",
+          title: "WSL筆記",
+          url: "https://benson0418.github.io/2025/09/07/myWSLnote/",
+          excerpt: "",
+          description: "",
+          stripContent: "WSL&amp;#x2F;Linux 常用命令初始設定Root 密碼設定12wsl -d Ubuntu -u rootpasswd n95linux  基本命令格式1command [-options] [parameter] 命令 選項 參數  檔案與目錄操作ls - 列出檔案和目錄1ls [-a -l -h][路徑]  -a 列出隱藏檔案 -h 顯示檔案大小單位 ls -la 列表顯示隱藏檔案  快捷鍵：  &amp;lt;Ctrl+L&amp;gt; 清除畫面 &amp;lt;Ctrl+C&amp;gt; 終止  cd - 變更",
+          date: "Sun Sep 07 2025 19:00:00 GMT+0800",
+          updated: "Sun Sep 07 2025 18:41:29 GMT+0800",
+          cover: "/../images/wsl2.jpeg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "",
+              appKey: "",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: false,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: '',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: '',
+              region: '',
+              urls: [
+                '/friend/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'Benson0418/Benson0418.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOPmgYLg');
+        giscusScript.setAttribute('data-category', 'Announcements'); 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOPmgYLs4CvFjB');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous"></script>
+
+  
+    <script>
+      var isMobile = window.matchMedia('(max-width: 959px)').matches;
+      if (isMobile) {
+      const aplayer = _$('#aplayer');
+        if (aplayer) {
+          const aside = aplayer.parentNode;
+          if (aside?.tagName === 'ASIDE') {
+            aplayer.removeAttribute('data-aos');
+            aside.removeChild(aplayer);
+            document.body.appendChild(aplayer);
+          }
+        }
+      }
+      const ap = new APlayer({
+        theme: "var(--color-link)",
+        container: document.getElementById('aplayer'),
+        audio: [{"name":"神々が恋した幻想郷　東方風神録 3面テーマ","artist":"アルペッジョが紡ぐ幻想の調べ","url":"/music/【アルペッジョが紡ぐ幻想の調べ】神々が恋した幻想郷　東方風神録 3面テーマ　【東方中級ピアノアレンジ】.mp3","cover":"/images/cover.jpg"},{"name":"鈴木このみ - This Game","artist":"鈴木このみ","url":"/music/【ピアノ】鈴木このみ - This Game｜遊戲人生-No Game No Life OP.mp3","cover":"/images/cover1.jpg"},{"name":"残酷な天使のテーゼ","artist":"高橋洋子","url":"/music/A Cruel Angel's Thesis - Neon Genesis Evangelion OP [Piano].mp3","cover":"/images/cover2.jpg"}] || [],
+        fixed: isMobile ? true : (false || false),
+        autoplay: false || false,
+        loop: 'none' || 'all',
+        order: 'random' || 'list',
+        preload: 'auto' || 'auto',
+        volume: 0.3 || 0.7,
+        mutex: true || true,
+        listFolded: false || false,
+        lrcType: 0 || 0,
+      });
+    </script>
+  
+
+
+
+
+
+    
+  </body>
+  </html>
+
